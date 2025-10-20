@@ -5,7 +5,6 @@ using Domain.Core.RuleException;
 using MediatR;
 using Menu.Application.Interfaces;
 using Menu.Domain.Common.Messages.FieldNames;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Menu.Application.Modules.Food.Commands.DeleteFood

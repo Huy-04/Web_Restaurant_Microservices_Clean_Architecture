@@ -16,7 +16,7 @@ namespace Menu.Api.Controllers
 {
     [ApiController]
     [Route("api/[Controller]")]
-    public sealed class FoodController : Controller
+    public sealed class FoodController : ControllerBase
     {
         private readonly IMediator _mediator;
 

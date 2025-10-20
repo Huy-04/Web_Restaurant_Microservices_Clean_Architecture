@@ -6,9 +6,7 @@ using MediatR;
 using Menu.Application.DTOs.Responses.FoodType;
 using Menu.Application.Interfaces;
 using Menu.Application.Mapping.FoodTypeMapExtension;
-using Menu.Application.Modules.FoodTypes.Commands.DeleteFoodType;
 using Menu.Domain.Common.Messages.FieldNames;
-using Menu.Domain.ValueObjects.FoodType;
 using Microsoft.Extensions.Logging;
 
 namespace Menu.Application.Modules.FoodTypes.Commands.CreateFoodType

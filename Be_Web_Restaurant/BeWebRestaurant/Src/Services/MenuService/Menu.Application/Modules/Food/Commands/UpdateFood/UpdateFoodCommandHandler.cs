@@ -86,7 +86,7 @@ namespace Menu.Application.Modules.Food.Commands.UpdateFood
                 }
 
                 food.ApplyFood(command.Request);
-                await _uow.FoodRepo.UpdateAsync(food, token);
+                await _uow.FoodRepo.Update(food);
                 await _uow.CommitAsync(token);
                 
                 _logger.LogInformation(

@@ -69,7 +69,7 @@ namespace Menu.Application.Modules.FoodTypes.Commands.UpdateFoodType
                 }
 
                 foodType.UpdateName(newName);
-                await repo.UpdateAsync(foodType, token);
+                await repo.Update(foodType);
                 await _uow.CommitAsync(token);
 
                 _logger.LogInformation(

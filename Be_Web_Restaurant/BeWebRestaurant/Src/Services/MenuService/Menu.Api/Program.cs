@@ -1,4 +1,5 @@
 ﻿using Common.Behaviors;
+using Common.Logging;
 using Common.Middleware;
 using MediatR;
 using Menu.Application.Interfaces;
@@ -7,58 +8,11 @@ using Menu.Infrastructure.Persistence;
 using Menu.Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using Serilog;
-using Serilog.Events;
-using Serilog.Formatting.Compact;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add Serilog
-builder.Host.UseSerilog((ctx, lc) => lc
-    .MinimumLevel.Debug()
-
-    // Microsoft logs
-    .MinimumLevel.Override("Microsoft.AspNetCore.Hosting.Diagnostics", LogEventLevel.Information)
-    .MinimumLevel.Override("Microsoft.AspNetCore.Server.Kestrel", LogEventLevel.Information)
-    .MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", LogEventLevel.Warning)
-    .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
-
-    // Hide license & middleware noise
-    .MinimumLevel.Override("MediatR", LogEventLevel.Error)
-    .MinimumLevel.Override("LuckyPennySoftware.MediatR.License", LogEventLevel.Error)
-    .MinimumLevel.Override("Common.Middleware.ExceptionMiddleware", LogEventLevel.Error)
-    .MinimumLevel.Override("Common.Behaviors.ValidationBehaviors", LogEventLevel.Information)
-
-    .Enrich.With(new ShortSourceContextEnricher())
-
-    // TraceId
-    .Enrich.WithActivityId()
-
-    .WriteTo.Console(outputTemplate:
-        "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz}] [{Level:u3}] [{TraceId}] [{SourceContextShort}] [{Message:lj}]{NewLine}{Exception}")
-    .WriteTo.File(
-            path: "logs/be/menulog-be-.txt",
-            rollingInterval: RollingInterval.Day,
-            retainedFileCountLimit: 30,
-            buffered: false,
-            flushToDiskInterval: TimeSpan.FromSeconds(1),
-            shared: true,
-            outputTemplate:
-                "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz}] [{Level:u3}] [{TraceId}] [{SourceContextShort}] [{Message:lj}]{NewLine}{Exception}"
-    )
-
-    // JSON for ui
-    .WriteTo.File(
-        formatter: new CompactJsonFormatter(),
-        path: "logs/fe/menulog-fe-.clef",
-        rollingInterval: RollingInterval.Day,
-        retainedFileCountLimit: 30,
-        buffered: false,
-        flushToDiskInterval: TimeSpan.FromSeconds(1),
-        shared: true
-    )
-
-);
+builder.Host.UseSharedSerilog(builder.Configuration);
 
 // Add controllers
 builder.Services.AddControllers();

@@ -11,7 +11,7 @@ namespace Menu.Application.Interfaces
 
         Task<FoodType> CreateAsync(FoodType foodType, CancellationToken token = default);
 
-        Task<FoodType> UpdateAsync(FoodType foodType);
+        Task<FoodType> Update(FoodType foodType);
 
         Task<bool> DeleteAsync(Guid idFoodType, CancellationToken token = default);
 

@@ -35,7 +35,7 @@ namespace Menu.Infrastructure.Repository
             return foodType;
         }
 
-        public Task<FoodType> UpdateAsync(FoodType foodType)
+        public Task<FoodType> Update(FoodType foodType)
         {
             _context.FoodTypes.Update(foodType);
             return Task.FromResult(foodType);
