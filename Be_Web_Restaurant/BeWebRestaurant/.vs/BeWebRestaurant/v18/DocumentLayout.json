@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Code\\Project\\Web_Restaurant\\Be_Web_Restaurant\\BeWebRestaurant\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E39A46A5-8E52-4F2B-9377-4E2F0F21DE6F}|Src\\Services\\MenuService\\Menu.Infrastructure\\Menu.Infrastructure.csproj|c:\\code\\project\\web_restaurant\\be_web_restaurant\\bewebrestaurant\\src\\services\\menuservice\\menu.infrastructure\\persistence\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E39A46A5-8E52-4F2B-9377-4E2F0F21DE6F}|Src\\Services\\MenuService\\Menu.Infrastructure\\Menu.Infrastructure.csproj|solutionrelative:src\\services\\menuservice\\menu.infrastructure\\persistence\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UnitOfWork.cs",
+              "DocumentMoniker": "C:\\Code\\Project\\Web_Restaurant\\Be_Web_Restaurant\\BeWebRestaurant\\Src\\Services\\MenuService\\Menu.Infrastructure\\Persistence\\UnitOfWork.cs",
+              "RelativeDocumentMoniker": "Src\\Services\\MenuService\\Menu.Infrastructure\\Persistence\\UnitOfWork.cs",
+              "ToolTip": "C:\\Code\\Project\\Web_Restaurant\\Be_Web_Restaurant\\BeWebRestaurant\\Src\\Services\\MenuService\\Menu.Infrastructure\\Persistence\\UnitOfWork.cs",
+              "RelativeToolTip": "Src\\Services\\MenuService\\Menu.Infrastructure\\Persistence\\UnitOfWork.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAA9wD8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T00:57:11.637Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

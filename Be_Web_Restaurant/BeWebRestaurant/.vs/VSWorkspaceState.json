@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Src",
+    "\\Src\\Services",
+    "\\Src\\Services\\MenuService",
+    "\\Src\\Services\\MenuService\\Menu.Domain",
+    "\\Src\\Services\\MenuService\\Menu.Domain\\Rules",
+    "\\Src\\Services\\MenuService\\Menu.Domain\\Rules\\FoodRule"
+  ],
+  "SelectedNode": "\\Src\\Services\\MenuService\\Menu.Domain\\Rules\\FoodRule\\FoodRule.cs",
+  "PreviewInSolutionExplorer": false
+}

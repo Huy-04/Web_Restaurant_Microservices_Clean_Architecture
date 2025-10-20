@@ -1,0 +1,195 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+
+#nullable disable
+
+namespace Inventory.Infrastructure.Persistence.Migrations
+{
+    [DbContext(typeof(InventoryDbContext))]
+    partial class InventoryDbContextModelSnapshot : ModelSnapshot
+    {
+        protected override void BuildModel(ModelBuilder modelBuilder)
+        {
+#pragma warning disable 612, 618
+            modelBuilder
+                .HasAnnotation("ProductVersion", "9.0.5")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Inventory.Domain.Entities.FoodRecipe", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("IdFoodRecipe");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetimeoffset")
+                        .HasDefaultValueSql("GETUTCDATE()");
+
+                    b.Property<Guid>("FoodId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IngredientsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Measurement")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FoodId");
+
+                    b.HasIndex("IngredientsId");
+
+                    b.HasIndex("FoodId", "IngredientsId")
+                        .IsUnique();
+
+                    b.ToTable("FoodRecipe", (string)null);
+                });
+
+            modelBuilder.Entity("Inventory.Domain.Entities.Ingredients", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("IdIngredients");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetimeoffset")
+                        .HasDefaultValueSql("GETUTCDATE()");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("IngredientsName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IngredientsName")
+                        .IsUnique();
+
+                    b.ToTable("Ingredients", (string)null);
+                });
+
+            modelBuilder.Entity("Inventory.Domain.Entities.Stock", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("IdStock");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetimeoffset")
+                        .HasDefaultValueSql("GETUTCDATE()");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("StockName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StockName")
+                        .IsUnique();
+
+                    b.ToTable("Stock", (string)null);
+                });
+
+            modelBuilder.Entity("Inventory.Domain.Entities.StockItems", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("IdStockItems");
+
+                    b.Property<decimal>("Capacity")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetimeoffset")
+                        .HasDefaultValueSql("GETUTCDATE()");
+
+                    b.Property<Guid>("IngredientsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Measurement")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("StockId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("StockItemsStatus")
+                        .HasColumnType("int");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IngredientsId");
+
+                    b.HasIndex("StockId");
+
+                    b.HasIndex("StockId", "IngredientsId")
+                        .IsUnique();
+
+                    b.ToTable("StockItems", (string)null);
+                });
+
+            modelBuilder.Entity("Inventory.Domain.Entities.FoodRecipe", b =>
+                {
+                    b.HasOne("Inventory.Domain.Entities.Ingredients", null)
+                        .WithMany()
+                        .HasForeignKey("IngredientsId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("FK_FoodRecipe_Ingredients_IngredientsId");
+                });
+
+            modelBuilder.Entity("Inventory.Domain.Entities.StockItems", b =>
+                {
+                    b.HasOne("Inventory.Domain.Entities.Ingredients", null)
+                        .WithMany()
+                        .HasForeignKey("IngredientsId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("FK_StockItems_Ingredients_IngredientsId");
+
+                    b.HasOne("Inventory.Domain.Entities.Stock", null)
+                        .WithMany()
+                        .HasForeignKey("StockId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("FK_StockItems_Stock_StockId");
+                });
+#pragma warning restore 612, 618
+        }
+    }
+}
