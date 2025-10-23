@@ -1,4 +1,4 @@
-﻿using Common.PropertyConverters;
+﻿using Infrastructure.Core.PropertyConverters;
 using Inventory.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -30,7 +30,7 @@ namespace Inventory.Infrastructure.Persistence.EntityConfigurations
                 .IsRequired();
 
             entity.Property(i => i.Measurement)
-                .HasConversion(CommonConverters.MeasurementConverter)
+                .HasConversion(MeasurementConverterExtension.MeasurementConverter)
                 .IsRequired();
 
             entity.Property(i => i.StockItemsStatus)

@@ -17,7 +17,7 @@ namespace Inventory.Application.Interfaces
 
         Task<StockItems> CreateAsync(StockItems stockItems, CancellationToken token = default);
 
-        Task<StockItems> UpdateAsync(StockItems stockItems);
+        Task<StockItems> Update(StockItems stockItems);
 
         Task<bool> DeleteAsync(Guid idStockItems, CancellationToken token = default);
 

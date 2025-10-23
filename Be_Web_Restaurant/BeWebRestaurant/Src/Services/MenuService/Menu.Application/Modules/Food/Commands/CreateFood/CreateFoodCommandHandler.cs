@@ -24,18 +24,13 @@ namespace Menu.Application.Modules.Food.Commands.CreateFood
 
         public async Task<FoodResponse> Handle(CreateFoodCommand command, CancellationToken token)
         {
-            _logger.LogInformation("Handling create Food");
-
             await _uow.BeginTransactionAsync(token);
             try
             {
                 var foodType = await _uow.FoodTypeRepo.GetByIdAsync(command.Request.FoodTypeId, token);
                 if (foodType is null)
                 {
-                    _logger.LogWarning(
-                        "Create failed: FoodType with Id={Id} not found",
-                        command.Request.FoodTypeId
-                    );
+                    _logger.LogWarning("Create failed: FoodType with Id={Id} not found", command.Request.FoodTypeId);
                     throw RuleFactory.SimpleRuleException
                         (ErrorCategory.NotFound,
                         FoodTypeField.IdFoodType,
@@ -49,10 +44,7 @@ namespace Menu.Application.Modules.Food.Commands.CreateFood
                 var food = command.Request.ToFood();
                 if (await _uow.FoodRepo.ExistsByNameAsync(food.FoodName, token))
                 {
-                    _logger.LogWarning(
-                       "Create failed: Food with Name:'{Name}' already exists",
-                       food.FoodName.Value
-                   );
+                    _logger.LogWarning("Create failed: Food with Name '{Name}' already exists", food.FoodName.Value);
                     throw RuleFactory.SimpleRuleException
                         (ErrorCategory.Conflict,
                         FoodField.FoodName,
@@ -66,10 +58,6 @@ namespace Menu.Application.Modules.Food.Commands.CreateFood
                 await _uow.FoodRepo.CreateAsync(food, token);
                 await _uow.CommitAsync(token);
                 
-                _logger.LogInformation(
-                    "Successfully created Food with Id={Id}",
-                    food.Id
-                );
                 return food.ToFoodResponse(foodType.FoodTypeName);
             }
             catch (BusinessRuleException bex)

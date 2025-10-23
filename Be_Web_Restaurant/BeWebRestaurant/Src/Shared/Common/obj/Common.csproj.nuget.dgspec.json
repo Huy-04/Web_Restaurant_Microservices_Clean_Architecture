@@ -59,10 +59,6 @@
               "target": "Package",
               "version": "[13.0.0, )"
             },
-            "Microsoft.AspNetCore.Mvc.Core": {
-              "target": "Package",
-              "version": "[2.3.0, )"
-            },
             "Microsoft.EntityFrameworkCore.Cosmos": {
               "target": "Package",
               "version": "[9.0.5, )"
@@ -70,6 +66,10 @@
             "Serilog.AspNetCore": {
               "target": "Package",
               "version": "[9.0.0, )"
+            },
+            "Serilog.Enrichers.Activity": {
+              "target": "Package",
+              "version": "[1.0.0.3, )"
             }
           },
           "imports": [
@@ -149,20 +149,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[9.0.10, 9.0.10]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[9.0.10, 9.0.10]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[9.0.10, 9.0.10]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"

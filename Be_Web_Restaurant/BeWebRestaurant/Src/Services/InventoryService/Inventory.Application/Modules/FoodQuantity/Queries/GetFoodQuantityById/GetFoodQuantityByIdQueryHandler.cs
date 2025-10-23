@@ -22,7 +22,7 @@ namespace Inventory.Application.Modules.FoodQuantity.Queries.GetFoodQuantityById
             }
 
             var foodRecipeMeasurement = foodRecipeList.ToDictionary(x => x.IngredientsId, x => x.Measurement);
-            var stockItemsList = await _uow.StockItemsRepo.GetAllAsync();
+            var stockItemsList = await _uow.StockItemsRepo.GetAllAsync(token);
             var stockItemsMeasurements = stockItemsList.ToDictionary(x => x.IngredientsId, x => x.Measurement);
 
             var result = foodRecipeMeasurement

@@ -16,7 +16,7 @@ namespace Inventory.Application.Interfaces
 
         Task<FoodRecipe> CreateAsync(FoodRecipe foodRecipe, CancellationToken token = default);
 
-        Task<FoodRecipe> UpdateAsync(FoodRecipe foodRecipe);
+        Task<FoodRecipe> Update(FoodRecipe foodRecipe);
 
         Task<bool> DeleteAsync(Guid idFoodRecipe, CancellationToken token = default);
 

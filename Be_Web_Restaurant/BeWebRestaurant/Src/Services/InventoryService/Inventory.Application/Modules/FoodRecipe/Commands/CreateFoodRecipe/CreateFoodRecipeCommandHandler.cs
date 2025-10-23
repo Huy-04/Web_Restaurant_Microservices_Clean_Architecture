@@ -24,9 +24,6 @@ namespace Inventory.Application.Modules.FoodRecipe.Commands.CreateFoodRecipe
 
         public async Task<FoodRecipeResponse> Handle(CreateFoodRecipeCommand command, CancellationToken token)
         {
-            _logger.LogInformation("Handling create FoodRecipe for FoodId={FoodId}, IngredientsId={IngredientsId}",
-                command.Request.FoodId, command.Request.IngredientsId);
-
             await _uow.BeginTransactionAsync(token);
 
             try
@@ -36,10 +33,7 @@ namespace Inventory.Application.Modules.FoodRecipe.Commands.CreateFoodRecipe
                 var ingredients = await _uow.IngredientsRepo.GetByIdAsync(foodRecipe.IngredientsId, token);
                 if (ingredients is null)
                 {
-                    _logger.LogWarning(
-                       "Create failed: FoodRecipe with IngredientsId={Id} not found",
-                       foodRecipe.IngredientsId
-                    );
+                    _logger.LogWarning("Create failed: Ingredients with Id={Id} not found", foodRecipe.IngredientsId);
                     throw RuleFactory.SimpleRuleException
                         (ErrorCategory.NotFound,
                         IngredientsField.IdIngredients,
@@ -52,11 +46,8 @@ namespace Inventory.Application.Modules.FoodRecipe.Commands.CreateFoodRecipe
 
                 if (await _uow.FoodRecipesRepo.ExistsByFoodIdAndIngredientsIdAsync(foodRecipe.FoodId, foodRecipe.IngredientsId))
                 {
-                    _logger.LogWarning(
-                        "Create failed: FoodRecipe with FoodId={FoodId} and IngredientsId={IngredientsId} already exists",
-                         foodRecipe.FoodId,
-                         foodRecipe.IngredientsId
-                    );
+                    _logger.LogWarning("Create failed: FoodRecipe with FoodId={FoodId} and IngredientsId={IngredientsId} already exists",
+                        foodRecipe.FoodId, foodRecipe.IngredientsId);
                     throw RuleFactory.SimpleRuleException
                         (ErrorCategory.Conflict,
                         FoodRecipeField.IdFoodAndIdIngredients,
@@ -76,11 +67,6 @@ namespace Inventory.Application.Modules.FoodRecipe.Commands.CreateFoodRecipe
 
                 await _uow.FoodRecipesRepo.CreateAsync(foodRecipe);
                 await _uow.CommitAsync(token);
-
-                _logger.LogInformation(
-                   "Successfully created FoodRecipe with Id={Id}",
-                   foodRecipe.Id
-               );
 
                 return foodRecipe.ToFoodRecipeResponse(ingredients.IngredientsName);
             }

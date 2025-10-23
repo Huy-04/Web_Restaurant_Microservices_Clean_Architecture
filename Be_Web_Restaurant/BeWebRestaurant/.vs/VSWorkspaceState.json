@@ -4,10 +4,8 @@
     "\\Src",
     "\\Src\\Services",
     "\\Src\\Services\\MenuService",
-    "\\Src\\Services\\MenuService\\Menu.Domain",
-    "\\Src\\Services\\MenuService\\Menu.Domain\\Rules",
-    "\\Src\\Services\\MenuService\\Menu.Domain\\Rules\\FoodRule"
+    "\\Src\\Services\\MenuService\\Menu.Api"
   ],
-  "SelectedNode": "\\Src\\Services\\MenuService\\Menu.Domain\\Rules\\FoodRule\\FoodRule.cs",
+  "SelectedNode": "\\BeWebRestaurant.sln",
   "PreviewInSolutionExplorer": false
 }

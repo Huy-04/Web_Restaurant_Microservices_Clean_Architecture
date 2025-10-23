@@ -17,7 +17,7 @@ namespace Inventory.Application.Modules.Ingredients.Queries.GetAllIngredients
 
         public async Task<IEnumerable<IngredientsResponse>> Handle(GetAllIngredientsQuery query, CancellationToken token)
         {
-            var ingredientsList = await _uow.IngredientsRepo.GetAllAsync();
+            var ingredientsList = await _uow.IngredientsRepo.GetAllAsync(token);
 
             return ingredientsList.Select(i => i.ToIngredientsResponse());
         }

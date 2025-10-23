@@ -24,11 +24,6 @@ namespace Menu.Application.Modules.FoodTypes.Commands.UpdateFoodType
 
         public async Task<FoodTypeResponse> Handle(UpdateFoodTypeCommand command, CancellationToken token)
         {
-            _logger.LogInformation(
-                "Handling update FoodType with Id={Id}",
-                command.IdFoodType
-            );
-
             await _uow.BeginTransactionAsync(token);
             try
             {
@@ -37,10 +32,7 @@ namespace Menu.Application.Modules.FoodTypes.Commands.UpdateFoodType
                 var foodType = await repo.GetByIdAsync(command.IdFoodType, token);
                 if (foodType is null)
                 {
-                    _logger.LogWarning(
-                        "Update failed: FoodType with Id={Id} not found",
-                        command.IdFoodType
-                    );
+                    _logger.LogWarning("Update failed: FoodType with Id={Id} not found", command.IdFoodType);
                     throw RuleFactory.SimpleRuleException
                         (ErrorCategory.NotFound,
                         FoodTypeField.IdFoodType,
@@ -54,10 +46,7 @@ namespace Menu.Application.Modules.FoodTypes.Commands.UpdateFoodType
                 var newName = command.Request.ToFoodTypeName();
                 if (await repo.ExistsByNameAsync(newName, token, foodType.Id))
                 {
-                    _logger.LogWarning(
-                        "Update failed: FoodType with Name:'{Name}' already exists",
-                        newName.Value
-                    );
+                    _logger.LogWarning("Update failed: FoodType with Name '{Name}' already exists", newName.Value);
                     throw RuleFactory.SimpleRuleException
                         (ErrorCategory.Conflict,
                         FoodTypeField.FoodTypeName,
@@ -72,10 +61,6 @@ namespace Menu.Application.Modules.FoodTypes.Commands.UpdateFoodType
                 await repo.Update(foodType);
                 await _uow.CommitAsync(token);
 
-                _logger.LogInformation(
-                    "Successfully updated FoodType with Id={Id}",
-                    command.IdFoodType
-                );
                 return foodType.ToFoodTypeResponse();
             }
             catch (BusinessRuleException bex)

@@ -1,4 +1,4 @@
-﻿using Common.DTOs.Requests.Measurement;
+﻿using Application.Core.DTOs.Requests.Measurement;
 
 namespace Inventory.Application.DTOs.Requests.FoodRecipe
 {

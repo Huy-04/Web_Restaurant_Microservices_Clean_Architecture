@@ -24,19 +24,13 @@ namespace Menu.Application.Modules.FoodTypes.Commands.CreateFoodType
 
         public async Task<FoodTypeResponse> Handle(CreateFoodTypeCommand command, CancellationToken token)
         {
-            _logger.LogInformation("Handling create FoodType");
-
             await _uow.BeginTransactionAsync(token);
             try
             {
                 var newName = command.Request.ToFoodTypeName();
                 if (await _uow.FoodTypeRepo.ExistsByNameAsync(newName, token))
                 {
-                    _logger.LogWarning(
-                        "Create failed: FoodType with Name:'{Name}' already exists",
-                        newName.Value
-                    );
-
+                    _logger.LogWarning("Create failed: FoodType with Name '{Name}' already exists", newName.Value);
                     throw RuleFactory.SimpleRuleException
                         (ErrorCategory.Conflict,
                         FoodTypeField.FoodTypeName,
@@ -51,10 +45,6 @@ namespace Menu.Application.Modules.FoodTypes.Commands.CreateFoodType
                 await _uow.FoodTypeRepo.CreateAsync(foodType, token);
                 await _uow.CommitAsync(token);
 
-                _logger.LogInformation(
-                    "Successfully created FoodType with Id={Id}",
-                    foodType.Id
-                );
                 return foodType.ToFoodTypeResponse();
             }
             catch (BusinessRuleException bex)

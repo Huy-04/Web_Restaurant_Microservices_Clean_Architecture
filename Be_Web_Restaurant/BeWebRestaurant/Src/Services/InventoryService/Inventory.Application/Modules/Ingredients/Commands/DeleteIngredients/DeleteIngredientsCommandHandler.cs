@@ -22,21 +22,13 @@ namespace Inventory.Application.Modules.Ingredients.Commands.DeleteIngredients
 
         public async Task<bool> Handle(DeleteIngredientsCommand command, CancellationToken token)
         {
-            _logger.LogInformation(
-                "Handling delete Ingredients with Id={Id}",
-                command.IdIngredients
-            );
-
             await _uow.BeginTransactionAsync(token);
             try
             {
                 var exists = await _uow.IngredientsRepo.ExistsByIdAsync(command.IdIngredients, token);
                 if (!exists)
                 {
-                    _logger.LogWarning(
-                        "Delete failed: Ingredients with Id={Id} not found",
-                        command.IdIngredients
-                    );
+                    _logger.LogWarning("Delete failed: Ingredients with Id={Id} not found", command.IdIngredients);
                     throw RuleFactory.SimpleRuleException(
                         ErrorCategory.NotFound,
                         IngredientsField.IdIngredients,
@@ -49,10 +41,7 @@ namespace Inventory.Application.Modules.Ingredients.Commands.DeleteIngredients
 
                 if (await _uow.StockItemsRepo.ExistsByIngredientsAsync(command.IdIngredients, token))
                 {
-                    _logger.LogWarning(
-                           "Delete failed: Ingredients with Id={Id} used by StockItems",
-                           command.IdIngredients
-                    );
+                    _logger.LogWarning("Delete failed: Ingredients with Id={Id} is in use by stock items", command.IdIngredients);
                     throw RuleFactory.SimpleRuleException(
                         ErrorCategory.Conflict,
                         IngredientsField.IdIngredients,
@@ -65,10 +54,7 @@ namespace Inventory.Application.Modules.Ingredients.Commands.DeleteIngredients
 
                 if (await _uow.FoodRecipesRepo.ExistsByIngredientsIdAsync(command.IdIngredients, token))
                 {
-                    _logger.LogWarning(
-                           "Delete failed: Ingredients with Id={Id} used by FoodRecipes",
-                           command.IdIngredients
-                    );
+                    _logger.LogWarning("Delete failed: Ingredients with Id={Id} is in use by food recipes", command.IdIngredients);
                     throw RuleFactory.SimpleRuleException(
                         ErrorCategory.Conflict,
                         IngredientsField.IdIngredients,
@@ -82,10 +68,6 @@ namespace Inventory.Application.Modules.Ingredients.Commands.DeleteIngredients
                 await _uow.IngredientsRepo.DeleteAsync(command.IdIngredients, token);
                 await _uow.CommitAsync(token);
 
-                _logger.LogInformation(
-                    "Successfully deleted Ingredients with Id={Id}",
-                    command.IdIngredients
-                );
                 return true;
             }
             catch (BusinessRuleException bex)

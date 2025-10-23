@@ -16,9 +16,9 @@ namespace Inventory.Application.Modules.StockItems.Queries.GetAllStockItems
 
         public async Task<IEnumerable<StockItemsResponse>> Handle(GetAllIStockItemsQuery query, CancellationToken token)
         {
-            var stockItemsList = await _uow.StockItemsRepo.GetAllAsync();
+            var stockItemsList = await _uow.StockItemsRepo.GetAllAsync(token);
             var stockList = await _uow.StockRepo.GetAllAsync();
-            var ingredientsList = await _uow.IngredientsRepo.GetAllAsync();
+            var ingredientsList = await _uow.IngredientsRepo.GetAllAsync(token);
             var list = from si in stockItemsList
                        join s in stockList
                        on si.StockId equals s.Id

@@ -1,4 +1,4 @@
-﻿using Common.DTOs.Responses.Money;
+﻿using Application.Core.DTOs.Responses.Money;
 using Menu.Domain.Enums;
 
 namespace Menu.Application.DTOs.Responses.Food

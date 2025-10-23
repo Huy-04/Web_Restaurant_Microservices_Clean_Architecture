@@ -35,9 +35,9 @@ namespace Inventory.Infrastructure.Repository
             return stock;
         }
 
-        public Task<Stock> UpdateAsync(Stock stock)
+        public Task<Stock> Update(Stock stock)
         {
-            var entity = _context.Stocks.Update(stock);
+            _context.Stocks.Update(stock);
             return Task.FromResult(stock);
         }
 

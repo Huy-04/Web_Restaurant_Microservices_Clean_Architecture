@@ -279,7 +279,7 @@
         }
       }
     },
-    "/api/Food/{status}": {
+    "/api/Food/status/{status}": {
       "get": {
         "tags": [
           "Food"

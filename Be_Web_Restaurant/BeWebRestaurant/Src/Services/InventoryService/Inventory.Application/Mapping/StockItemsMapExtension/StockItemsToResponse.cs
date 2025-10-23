@@ -1,4 +1,4 @@
-﻿using Common.Mapping.MeasurementMapExtension;
+﻿using Application.Core.Mapping.MeasurementMapExtension;
 using Inventory.Application.DTOs.Responses.StockItems;
 using Inventory.Domain.Entities;
 

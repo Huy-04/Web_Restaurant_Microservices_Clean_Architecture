@@ -1,4 +1,4 @@
-﻿using Common.DTOs.Requests.Measurement;
+﻿using Application.Core.DTOs.Requests.Measurement;
 using Inventory.Domain.Enums;
 
 namespace Inventory.Application.DTOs.Requests.StockItems

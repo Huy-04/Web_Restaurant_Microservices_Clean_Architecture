@@ -32,7 +32,7 @@ namespace Inventory.Application.Modules.StockItems.Queries.GetStockItemsByStock
                         {ParamField.Value,query.stockId }
                     });
             }
-            var ingredientsList = await _uow.IngredientsRepo.GetAllAsync();
+            var ingredientsList = await _uow.IngredientsRepo.GetAllAsync(token);
             var stockList = await _uow.StockRepo.GetAllAsync();
             var list = from si in stockItemsList
                        join i in ingredientsList on si.IngredientsId equals i.Id

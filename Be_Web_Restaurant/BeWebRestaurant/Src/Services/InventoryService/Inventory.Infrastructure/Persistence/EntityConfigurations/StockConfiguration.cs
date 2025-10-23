@@ -1,4 +1,4 @@
-﻿using Common.PropertyConverters;
+﻿using Infrastructure.Core.PropertyConverters;
 using Inventory.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -21,7 +21,7 @@ namespace Inventory.Infrastructure.Persistence.EntityConfigurations
             entity.HasIndex(s => s.StockName).IsUnique();
 
             entity.Property(s => s.Description)
-                .HasConversion(CommonConverters.DescriptionConverter)
+                .HasConversion(CommonConverterExtension.DescriptionConverter)
                 .HasMaxLength(255)
                 .IsRequired();
 

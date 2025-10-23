@@ -1,4 +1,4 @@
-﻿using Common.Mapping.MeasurementMapExtension;
+﻿using Application.Core.Mapping.MeasurementMapExtension;
 using Domain.Core.Enums;
 using Domain.Core.Messages.FieldNames;
 using Domain.Core.Rule.RuleFactory;
@@ -25,21 +25,13 @@ namespace Inventory.Application.Modules.StockItems.Commands.DecreaseStockItems
 
         public async Task<StockItemsResponse> Handle(DecreaseStockItemsCommand command, CancellationToken token)
         {
-            _logger.LogInformation(
-                "Handling decrease StockItems with Id={Id}",
-                command.IdStockItems
-            );
-
             await _uow.BeginTransactionAsync(token);
             try
             {
                 var stockItems = await _uow.StockItemsRepo.GetByIdAsync(command.IdStockItems, token);
                 if (stockItems is null)
                 {
-                    _logger.LogWarning(
-                        "Decrease failed: StockItems with Id={Id} not found",
-                        command.IdStockItems
-                    );
+                    _logger.LogWarning("Decrease failed: StockItems with Id={Id} not found", command.IdStockItems);
                     throw RuleFactory.SimpleRuleException(
                         ErrorCategory.NotFound,
                         StockItemsField.IdStockItems,
@@ -54,13 +46,9 @@ namespace Inventory.Application.Modules.StockItems.Commands.DecreaseStockItems
                 var ingredients = await _uow.IngredientsRepo.GetByIdAsync(stockItems.IngredientsId, token);
                 var measurement = command.Request.ToMeasurement();
                 stockItems.DecreaseMeasurement(measurement);
-                await _uow.StockItemsRepo.UpdateAsync(stockItems, token);
+                await _uow.StockItemsRepo.Update(stockItems);
                 await _uow.CommitAsync(token);
 
-                _logger.LogInformation(
-                    "Successfully decreased StockItems with Id={Id}",
-                    command.IdStockItems
-                );
                 return stockItems.ToStockItemsResponse(stock!.StockName, ingredients!.IngredientsName);
             }
             catch (BusinessRuleException bex)

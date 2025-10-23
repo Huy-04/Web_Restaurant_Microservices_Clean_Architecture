@@ -22,21 +22,13 @@ namespace Menu.Application.Modules.Food.Commands.DeleteFood
 
         public async Task<bool> Handle(DeleteFoodCommand command, CancellationToken token)
         {
-            _logger.LogInformation(
-                "Handling delete Food with Id={Id}",
-                command.IdFood
-            );
-
             await _uow.BeginTransactionAsync(token);
             try
             {
                 var exists = await _uow.FoodRepo.ExistsByIdAsync(command.IdFood, token);
                 if (!exists)
                 {
-                    _logger.LogWarning(
-                        "Delete failed: Food with Id={Id} not found",
-                        command.IdFood
-                    );
+                    _logger.LogWarning("Delete failed: Food with Id={Id} not found", command.IdFood);
                     throw RuleFactory.SimpleRuleException(
                         ErrorCategory.NotFound,
                         FoodField.IdFood,
@@ -50,10 +42,6 @@ namespace Menu.Application.Modules.Food.Commands.DeleteFood
                 await _uow.FoodRepo.DeleteAsync(command.IdFood, token);
                 await _uow.CommitAsync(token);
 
-                _logger.LogInformation(
-                    "Successfully deleted Food with Id={Id}",
-                    command.IdFood
-                );
                 return true;
             }
             catch (BusinessRuleException bex)

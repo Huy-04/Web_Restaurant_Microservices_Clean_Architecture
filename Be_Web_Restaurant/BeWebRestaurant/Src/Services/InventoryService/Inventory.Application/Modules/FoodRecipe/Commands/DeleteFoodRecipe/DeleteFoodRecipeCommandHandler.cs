@@ -18,8 +18,6 @@ namespace Inventory.Application.Modules.FoodRecipe.Commands.DeleteFoodRecipe
 
         public async Task<bool> Handle(DeleteFoodRecipeCommand command, CancellationToken token)
         {
-            _logger.LogInformation("Handling delete FoodRecipe with Id={Id}", command.IdFoodRecipe);
-
             await _uow.BeginTransactionAsync(token);
             try
             {
@@ -27,16 +25,11 @@ namespace Inventory.Application.Modules.FoodRecipe.Commands.DeleteFoodRecipe
                 if (!exists)
                 {
                     await _uow.RollBackAsync(token);
-                    _logger.LogWarning(
-                        "Delete failed: FoodRecipe with Id={Id} not found",
-                        command.IdFoodRecipe);
+                    _logger.LogWarning("Delete failed: FoodRecipe with Id={Id} not found", command.IdFoodRecipe);
                     return false;
                 }
 
                 await _uow.CommitAsync(token);
-                _logger.LogInformation(
-                    "Successfully deleted FoodRecipe with Id={Id}",
-                    command.IdFoodRecipe);
                 return true;
             }
             catch (BusinessRuleException bex)

@@ -22,21 +22,13 @@ namespace Menu.Application.Modules.FoodTypes.Commands.DeleteFoodType
 
         public async Task<bool> Handle(DeleteFoodTypeCommand command, CancellationToken token)
         {
-            _logger.LogInformation(
-                "Handling delete FoodType with Id={Id}",
-                command.IdFoodType
-            );
-
             await _uow.BeginTransactionAsync(token);
             try
             {
                 var exists = await _uow.FoodTypeRepo.ExistsByIdAsync(command.IdFoodType, token);
                 if (!exists)
                 {
-                    _logger.LogWarning(
-                        "Delete failed: FoodType with Id={Id} not found",
-                        command.IdFoodType
-                    );
+                    _logger.LogWarning("Delete failed: FoodType with Id={Id} not found", command.IdFoodType);
                     throw RuleFactory.SimpleRuleException(
                         ErrorCategory.NotFound,
                         FoodTypeField.IdFoodType,
@@ -50,11 +42,7 @@ namespace Menu.Application.Modules.FoodTypes.Commands.DeleteFoodType
                 var inUse = await _uow.FoodRepo.GetByFoodTypeAsync(command.IdFoodType, token);
                 if (inUse.Any())
                 {
-                    _logger.LogWarning(
-                           "Delete failed: FoodType with Id={Id} is currently used by {Count} Food records",
-                           command.IdFoodType,
-                           inUse.Count()
-                    );
+                    _logger.LogWarning("Delete failed: FoodType with Id={Id} is in use by {Count} food items", command.IdFoodType, inUse.Count());
                     throw RuleFactory.SimpleRuleException(
                         ErrorCategory.Conflict,
                         FoodTypeField.IdFoodType,
@@ -68,10 +56,6 @@ namespace Menu.Application.Modules.FoodTypes.Commands.DeleteFoodType
                 await _uow.FoodTypeRepo.DeleteAsync(command.IdFoodType, token);
                 await _uow.CommitAsync(token);
                 
-                _logger.LogInformation(
-                    "Successfully deleted FoodType with Id={Id}",
-                    command.IdFoodType
-                );
                 return true;
             }
             catch (BusinessRuleException bex)

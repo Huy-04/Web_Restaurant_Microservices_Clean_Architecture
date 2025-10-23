@@ -34,7 +34,7 @@ namespace Inventory.Application.Modules.FoodRecipe.Queries.GetFoodRecipeByFoodAn
                         { ParamField.Value,$"FoodId:{query.FoodId}; IngredientsId:{query.IngredientsId}" }
                     });
             }
-            var ingredientsList = await _uow.IngredientsRepo.GetAllAsync();
+            var ingredientsList = await _uow.IngredientsRepo.GetAllAsync(token);
             var list = from f in foodRecipeList
                        join i in ingredientsList
                        on f.IngredientsId equals i.Id

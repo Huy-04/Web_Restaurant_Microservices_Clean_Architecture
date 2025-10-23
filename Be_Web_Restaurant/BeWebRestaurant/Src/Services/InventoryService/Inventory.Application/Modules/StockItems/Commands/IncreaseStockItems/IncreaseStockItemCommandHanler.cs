@@ -1,4 +1,4 @@
-﻿using Common.Mapping.MeasurementMapExtension;
+﻿using Application.Core.Mapping.MeasurementMapExtension;
 using Domain.Core.Enums;
 using Domain.Core.Messages.FieldNames;
 using Domain.Core.Rule.RuleFactory;
@@ -54,7 +54,7 @@ namespace Inventory.Application.Modules.StockItems.Commands.IncreaseStockItems
                 var ingredients = await _uow.IngredientsRepo.GetByIdAsync(stockItems.IngredientsId);
                 var measurement = command.Request.ToMeasurement();
                 stockItems.IncreaseMeasurement(measurement);
-                await _uow.StockItemsRepo.UpdateAsync(stockItems);
+                await _uow.StockItemsRepo.Update(stockItems);
                 await _uow.CommitAsync(token);
 
                 _logger.LogInformation(

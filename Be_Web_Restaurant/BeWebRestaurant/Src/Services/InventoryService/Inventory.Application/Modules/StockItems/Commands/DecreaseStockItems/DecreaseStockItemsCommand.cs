@@ -1,4 +1,4 @@
-﻿using Common.DTOs.Requests.Measurement;
+﻿using Application.Core.DTOs.Requests.Measurement;
 using Domain.Core.Interface.Request;
 using Domain.Core.Interface.Rule;
 using Domain.Core.Rule.RuleFactory;

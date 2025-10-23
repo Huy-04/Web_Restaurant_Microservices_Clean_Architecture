@@ -25,18 +25,13 @@ namespace Inventory.Application.Modules.Ingredients.Commands.CreateIngredients
 
         public async Task<IngredientsResponse> Handle(CreateIngredientsCommand command, CancellationToken token)
         {
-            _logger.LogInformation("Handling create Ingredients");
-
             await _uow.BeginTransactionAsync(token);
             try
             {
                 var ingredients = command.Request.ToIngredients();
                 if (await _uow.IngredientsRepo.ExistsByNameAsync(ingredients.IngredientsName, token))
                 {
-                    _logger.LogWarning(
-                      "Create failed: Ingredients with Name:'{Name}' already exists",
-                      ingredients.IngredientsName.Value
-                  );
+                    _logger.LogWarning("Create failed: Ingredients with Name '{Name}' already exists", ingredients.IngredientsName.Value);
                     throw RuleFactory.SimpleRuleException(
                         ErrorCategory.Conflict,
                         IngredientsField.IngredientsName,
@@ -50,10 +45,6 @@ namespace Inventory.Application.Modules.Ingredients.Commands.CreateIngredients
                 await _uow.IngredientsRepo.CreateAsync(ingredients, token);
                 await _uow.CommitAsync(token);
                 
-                _logger.LogInformation(
-                   "Successfully created Ingredients with Id={Id}",
-                   ingredients.Id
-               );
                 return ingredients.ToIngredientsResponse();
             }
             catch (BusinessRuleException bex)

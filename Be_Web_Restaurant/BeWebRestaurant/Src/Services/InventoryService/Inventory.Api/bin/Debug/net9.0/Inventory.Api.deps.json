@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v9.0": {
       "Inventory.Api/1.0.0": {
         "dependencies": {
+          "Api.Core": "1.0.0",
           "Inventory.Application": "1.0.0",
           "Inventory.Domain": "1.0.0",
           "Inventory.Infrastructure": "1.0.0",
@@ -1179,15 +1180,25 @@
           }
         }
       },
-      "Common/1.0.0": {
+      "Api.Core/1.0.0": {
         "dependencies": {
           "Domain.Core": "1.0.0",
-          "MediatR": "13.0.0",
-          "Microsoft.EntityFrameworkCore.Cosmos": "9.0.5",
-          "Serilog.AspNetCore": "9.0.0"
+          "Serilog.AspNetCore": "9.0.0",
+          "Serilog.Enrichers.Activity": "1.0.0.3"
         },
         "runtime": {
-          "Common.dll": {
+          "API.Core.dll": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Application.Core/1.0.0": {
+        "dependencies": {
+          "Domain.Core": "1.0.0",
+          "MediatR": "13.0.0"
+        },
+        "runtime": {
+          "Application.Core.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -1201,9 +1212,21 @@
           }
         }
       },
+      "Infrastructure.Core/1.0.0": {
+        "dependencies": {
+          "Domain.Core": "1.0.0",
+          "Microsoft.EntityFrameworkCore.Cosmos": "9.0.5"
+        },
+        "runtime": {
+          "Infrastructure.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "Inventory.Application/1.0.0": {
         "dependencies": {
-          "Common": "1.0.0",
+          "Application.Core": "1.0.0",
           "Inventory.Domain": "1.0.0",
           "MediatR": "13.0.0"
         },
@@ -1227,6 +1250,7 @@
       },
       "Inventory.Infrastructure/1.0.0": {
         "dependencies": {
+          "Infrastructure.Core": "1.0.0",
           "Inventory.Application": "1.0.0",
           "Inventory.Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore": "9.0.5",
@@ -1779,12 +1803,22 @@
       "path": "system.windows.extensions/6.0.0",
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
     },
-    "Common/1.0.0": {
+    "Api.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Application.Core/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
     "Domain.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Infrastructure.Core/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

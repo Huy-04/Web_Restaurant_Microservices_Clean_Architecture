@@ -58,9 +58,9 @@ namespace Inventory.Infrastructure.Repository
             return foodRecipe;
         }
 
-        public Task<FoodRecipe> UpdateAsync(FoodRecipe foodRecipe)
+        public Task<FoodRecipe> Update(FoodRecipe foodRecipe)
         {
-            var entity = _context.Update(foodRecipe);
+            _context.Update(foodRecipe);
             return Task.FromResult(foodRecipe);
         }
 

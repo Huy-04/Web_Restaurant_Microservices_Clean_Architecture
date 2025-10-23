@@ -1,12 +1,1 @@
-{
-  "Version": 1,
-  "Hash": "VZkKn2ZrpX2XYsn/6QcFxVtH/V6YQ5Suyo9t9S0Jtcg=",
-  "Source": "Menu.Api",
-  "BasePath": "_content/Menu.Api",
-  "Mode": "Default",
-  "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
-}
+{"Version":1,"Hash":"d+DS12Mhu83TwBalvyXzRLOK9Z/MrI8zSZCRfMt2/vI=","Source":"Menu.Api","BasePath":"/","Mode":"Root","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}

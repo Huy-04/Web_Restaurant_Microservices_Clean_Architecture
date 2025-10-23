@@ -22,21 +22,13 @@ namespace Inventory.Application.Modules.Stock.Commands.DeleteStock
 
         public async Task<bool> Handle(DeleteStockCommand command, CancellationToken token)
         {
-            _logger.LogInformation(
-                "Handling delete Stock with Id={Id}",
-                command.IdStock
-            );
-
             await _uow.BeginTransactionAsync(token);
             try
             {
                 var exists = await _uow.StockRepo.ExistsByIdAsync(command.IdStock, token);
                 if (!exists)
                 {
-                    _logger.LogWarning(
-                        "Delete failed: Stock with Id={Id} not found",
-                        command.IdStock
-                    );
+                    _logger.LogWarning("Delete failed: Stock with Id={Id} not found", command.IdStock);
                     throw RuleFactory.SimpleRuleException(
                         ErrorCategory.NotFound,
                         StockField.IdStock,
@@ -49,10 +41,7 @@ namespace Inventory.Application.Modules.Stock.Commands.DeleteStock
 
                 if (await _uow.StockItemsRepo.ExistsByStockAsync(command.IdStock, token))
                 {
-                    _logger.LogWarning(
-                           "Delete failed: Stock with Id={Id} used by StockItems",
-                           command.IdStock
-                    );
+                    _logger.LogWarning("Delete failed: Stock with Id={Id} is in use by stock items", command.IdStock);
                     throw RuleFactory.SimpleRuleException(
                         ErrorCategory.Conflict,
                         StockField.IdStock,
@@ -66,10 +55,6 @@ namespace Inventory.Application.Modules.Stock.Commands.DeleteStock
                 await _uow.StockRepo.DeleteAsync(command.IdStock, token);
                 await _uow.CommitAsync(token);
 
-                _logger.LogInformation(
-                    "Successfully deleted Stock with Id={Id}",
-                    command.IdStock
-                );
                 return true;
             }
             catch (BusinessRuleException bex)

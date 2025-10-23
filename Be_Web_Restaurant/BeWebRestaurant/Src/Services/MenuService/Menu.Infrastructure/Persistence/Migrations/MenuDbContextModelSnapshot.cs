@@ -64,6 +64,10 @@ namespace Menu.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("FoodName")
+                        .IsUnique()
+                        .HasDatabaseName("IX_Food_FoodName_Unique");
+
                     b.HasIndex("FoodTypeId");
 
                     b.ToTable("Food", (string)null);
@@ -92,7 +96,8 @@ namespace Menu.Infrastructure.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("FoodTypeName")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasDatabaseName("IX_FoodType_FoodTypeName_Unique");
 
                     b.ToTable("FoodType", (string)null);
                 });

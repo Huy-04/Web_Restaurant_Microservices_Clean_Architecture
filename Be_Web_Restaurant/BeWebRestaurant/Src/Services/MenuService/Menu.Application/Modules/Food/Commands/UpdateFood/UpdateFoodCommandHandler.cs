@@ -25,11 +25,6 @@ namespace Menu.Application.Modules.Food.Commands.UpdateFood
 
         public async Task<FoodResponse> Handle(UpdateFoodCommand command, CancellationToken token)
         {
-            _logger.LogInformation(
-                "Handling update Food with Id={Id}",
-                command.IdFood
-            );
-
             await _uow.BeginTransactionAsync(token);
             try
             {
@@ -37,10 +32,7 @@ namespace Menu.Application.Modules.Food.Commands.UpdateFood
                 var food = await repo.GetByIdAsync(command.IdFood, token);
                 if (food is null)
                 {
-                    _logger.LogWarning(
-                       "Update failed: Food with Id={Id} not found",
-                       command.IdFood
-                   );
+                    _logger.LogWarning("Update failed: Food with Id={Id} not found", command.IdFood);
                     throw RuleFactory.SimpleRuleException
                         (ErrorCategory.NotFound,
                         FoodField.IdFood,
@@ -54,10 +46,7 @@ namespace Menu.Application.Modules.Food.Commands.UpdateFood
                 var foodType = await _uow.FoodTypeRepo.GetByIdAsync(command.Request.FoodTypeId, token);
                 if (foodType is null)
                 {
-                    _logger.LogWarning(
-                       "Update failed: FoodType with Id={Id} not found",
-                       command.Request.FoodTypeId
-                   );
+                    _logger.LogWarning("Update failed: FoodType with Id={Id} not found", command.Request.FoodTypeId);
                     throw RuleFactory.SimpleRuleException
                         (ErrorCategory.NotFound,
                         FoodTypeField.IdFoodType,
@@ -71,10 +60,7 @@ namespace Menu.Application.Modules.Food.Commands.UpdateFood
                 var newName = FoodName.Create(command.Request.FoodName);
                 if (await _uow.FoodRepo.ExistsByNameAsync(newName, token, food.Id))
                 {
-                    _logger.LogWarning(
-                        "Update failed: Food with Name:'{Name}' already exists",
-                        newName.Value
-                    );
+                    _logger.LogWarning("Update failed: Food with Name '{Name}' already exists", newName.Value);
                     throw RuleFactory.SimpleRuleException
                         (ErrorCategory.Conflict,
                         FoodField.FoodName,
@@ -89,10 +75,6 @@ namespace Menu.Application.Modules.Food.Commands.UpdateFood
                 await _uow.FoodRepo.Update(food);
                 await _uow.CommitAsync(token);
                 
-                _logger.LogInformation(
-                    "Successfully updated Food with Id={Id}",
-                    command.IdFood
-                );
                 return food.ToFoodResponse(foodType!.FoodTypeName);
             }
             catch (BusinessRuleException bex)

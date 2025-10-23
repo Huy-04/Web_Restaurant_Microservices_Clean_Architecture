@@ -16,8 +16,8 @@ namespace Inventory.Application.Modules.FoodRecipe.Queries.GetAllFoodRecipe
 
         public async Task<IEnumerable<FoodRecipeResponse>> Handle(GetAllFoodRecipeQuery query, CancellationToken token)
         {
-            var foodRecipeList = await _uow.FoodRecipesRepo.GetAllAsync();
-            var ingredientsList = await _uow.IngredientsRepo.GetAllAsync();
+            var foodRecipeList = await _uow.FoodRecipesRepo.GetAllAsync(token);
+            var ingredientsList = await _uow.IngredientsRepo.GetAllAsync(token);
 
             var list = from f in foodRecipeList
                        join i in ingredientsList

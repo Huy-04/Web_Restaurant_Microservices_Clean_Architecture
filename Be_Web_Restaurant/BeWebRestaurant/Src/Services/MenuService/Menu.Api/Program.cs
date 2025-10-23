@@ -1,6 +1,6 @@
-﻿using Common.Behaviors;
-using Common.Logging;
-using Common.Middleware;
+﻿using Api.Core.Logging;
+using Api.Core.Middleware;
+using Application.Core.Behaviors;
 using MediatR;
 using Menu.Application.Interfaces;
 using Menu.Application.Modules.FoodTypes.Commands.CreateFoodType;

@@ -17,8 +17,8 @@ namespace Menu.Infrastructure.Persistence.EntityConfigurations
                 .HasConversion(MenuConverters.FoodTypeNameConverter)
                 .HasMaxLength(50)
                 .IsRequired();
-
-            entity.HasIndex(ft => ft.FoodTypeName).IsUnique();
+            entity.HasIndex(ft => ft.FoodTypeName).IsUnique()
+                .HasDatabaseName("IX_FoodType_FoodTypeName_Unique");
 
             entity.Property(ft => ft.CreatedAt)
                 .HasDefaultValueSql("GETUTCDATE()")

@@ -11,7 +11,7 @@ namespace Inventory.Application.Interfaces
 
         Task<Ingredients> CreateAsync(Ingredients ingredients, CancellationToken token = default);
 
-        Task<Ingredients> UpdateAsync(Ingredients ingredients);
+        Task<Ingredients> Update(Ingredients ingredients);
 
         Task<bool> DeleteAsync(Guid idIngredients, CancellationToken token = default);
 

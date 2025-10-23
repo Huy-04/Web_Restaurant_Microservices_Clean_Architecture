@@ -2,7 +2,6 @@
 using Inventory.Application.Interfaces;
 using Inventory.Domain.Entities;
 using MediatR;
-using Microsoft.Azure.Cosmos.Serialization.HybridRow;
 
 namespace Inventory.Application.Modules.FoodQuantity.Queries.GetFoodQuantity
 {
@@ -18,7 +17,7 @@ namespace Inventory.Application.Modules.FoodQuantity.Queries.GetFoodQuantity
         public async Task<IEnumerable<FoodQuantityResponse>> Handle(GetFoodQuantityQuery query, CancellationToken token)
         {
             var foodRecipeList = await _uow.FoodRecipesRepo.GetAllAsync();
-            var stockItemsList = await _uow.StockItemsRepo.GetAllAsync();
+            var stockItemsList = await _uow.StockItemsRepo.GetAllAsync(token);
 
             var foodRecipeseGroup = foodRecipeList.GroupBy(x => x.FoodId);
 

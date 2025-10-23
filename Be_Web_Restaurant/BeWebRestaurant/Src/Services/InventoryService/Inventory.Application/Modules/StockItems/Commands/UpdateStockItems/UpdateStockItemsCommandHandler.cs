@@ -25,11 +25,6 @@ namespace Inventory.Application.Modules.StockItems.Commands.UpdateStockItems
 
         public async Task<StockItemsResponse> Handle(UpdateStockItemsCommand command, CancellationToken token)
         {
-            _logger.LogInformation(
-                "Handling update StockItems with Id={Id}",
-                command.IdStockItems
-            );
-
             await _uow.BeginTransactionAsync(token);
             try
             {
@@ -38,10 +33,7 @@ namespace Inventory.Application.Modules.StockItems.Commands.UpdateStockItems
                 var stockItems = await repo.GetByIdAsync(command.IdStockItems, token);
                 if (stockItems is null)
                 {
-                    _logger.LogWarning(
-                        "Update failed: StockItems with Id={Id} not found",
-                        command.IdStockItems
-                    );
+                    _logger.LogWarning("Update failed: StockItems with Id={Id} not found", command.IdStockItems);
                     throw RuleFactory.SimpleRuleException(
                         ErrorCategory.NotFound,
                         StockItemsField.IdStockItems,
@@ -55,10 +47,7 @@ namespace Inventory.Application.Modules.StockItems.Commands.UpdateStockItems
                 var stock = await _uow.StockRepo.GetByIdAsync(command.Request.StockId, token);
                 if (stock is null)
                 {
-                    _logger.LogWarning(
-                        "Update failed: Stock with Id={Id} not found",
-                        command.Request.StockId
-                    );
+                    _logger.LogWarning("Update failed: Stock with Id={Id} not found", command.Request.StockId);
                     throw RuleFactory.SimpleRuleException(
                         ErrorCategory.NotFound,
                         StockField.IdStock,
@@ -72,10 +61,7 @@ namespace Inventory.Application.Modules.StockItems.Commands.UpdateStockItems
                 var ingredients = await _uow.IngredientsRepo.GetByIdAsync(command.Request.IngredientsId, token);
                 if (ingredients is null)
                 {
-                    _logger.LogWarning(
-                        "Update failed: Ingredients with Id={Id} not found",
-                        command.Request.IngredientsId
-                    );
+                    _logger.LogWarning("Update failed: Ingredients with Id={Id} not found", command.Request.IngredientsId);
                     throw RuleFactory.SimpleRuleException(
                         ErrorCategory.NotFound,
                         IngredientsField.IdIngredients,
@@ -88,11 +74,8 @@ namespace Inventory.Application.Modules.StockItems.Commands.UpdateStockItems
 
                 if (await _uow.StockItemsRepo.ExistsByStockIdAndIngredientsIdAsync(command.Request.StockId, command.Request.IngredientsId, token, stockItems.Id))
                 {
-                    _logger.LogWarning(
-                        "Update failed: StockItems with StockId={StockId} and IngredientsId={IngredientsId} already exists",
-                        command.Request.StockId,
-                        command.Request.IngredientsId
-                    );
+                    _logger.LogWarning("Update failed: StockItems with StockId={StockId} and IngredientsId={IngredientsId} already exists", 
+                        command.Request.StockId, command.Request.IngredientsId);
                     throw RuleFactory.SimpleRuleException(
                         ErrorCategory.Conflict,
                         StockItemsField.StockIdAndIngredientsId,
@@ -110,13 +93,9 @@ namespace Inventory.Application.Modules.StockItems.Commands.UpdateStockItems
                 }
 
                 stockItems.ApplyStockItems(command.Request);
-                await _uow.StockItemsRepo.UpdateAsync(stockItems, token);
+                await _uow.StockItemsRepo.Update(stockItems);
                 await _uow.CommitAsync(token);
 
-                _logger.LogInformation(
-                    "Successfully updated StockItems with Id={Id}",
-                    command.IdStockItems
-                );
                 return stockItems.ToStockItemsResponse(stock.StockName, ingredients.IngredientsName);
             }
             catch (BusinessRuleException bex)

@@ -1,8 +1,6 @@
-﻿using Common.DTOs.Requests.Measurement;
-using Domain.Core.ValueObjects;
+﻿using Application.Core.DTOs.Requests.Measurement;
 using Inventory.Application.DTOs.Requests.StockItems;
 using Inventory.Application.DTOs.Responses.StockItems;
-using Inventory.Application.Modules.Stock.Commands.CreateStock;
 using Inventory.Application.Modules.StockItems.Commands.CreateStockItems;
 using Inventory.Application.Modules.StockItems.Commands.DecreaseStockItems;
 using Inventory.Application.Modules.StockItems.Commands.DeleteStockItems;

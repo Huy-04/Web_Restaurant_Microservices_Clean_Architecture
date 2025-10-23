@@ -24,11 +24,6 @@ namespace Inventory.Application.Modules.Ingredients.Commands.UpdateIngredients
 
         public async Task<IngredientsResponse> Handle(UpdateIngredientsCommand command, CancellationToken token)
         {
-            _logger.LogInformation(
-               "Handling update Ingredients with Id={Id}",
-               command.IdIngredients
-           );
-
             await _uow.BeginTransactionAsync(token);
             try
             {
@@ -37,10 +32,7 @@ namespace Inventory.Application.Modules.Ingredients.Commands.UpdateIngredients
                 var ingredients = await repo.GetByIdAsync(command.IdIngredients, token);
                 if (ingredients is null)
                 {
-                    _logger.LogWarning(
-                        "Update failed: Ingredients with Id={Id} not found",
-                        command.IdIngredients
-                    );
+                    _logger.LogWarning("Update failed: Ingredients with Id={Id} not found", command.IdIngredients);
                     throw RuleFactory.SimpleRuleException
                          (ErrorCategory.NotFound,
                          IngredientsField.IdIngredients,
@@ -54,10 +46,7 @@ namespace Inventory.Application.Modules.Ingredients.Commands.UpdateIngredients
                 var entity = command.Request.ToIngredients();
                 if (await repo.ExistsByNameAsync(entity.IngredientsName, token, ingredients.Id))
                 {
-                    _logger.LogWarning(
-                       "Update failed: Ingredients with Name:'{Name}' already exists",
-                       entity.IngredientsName.Value
-                   );
+                    _logger.LogWarning("Update failed: Ingredients with Name '{Name}' already exists", entity.IngredientsName.Value);
                     throw RuleFactory.SimpleRuleException(
                         ErrorCategory.Conflict,
                         IngredientsField.IngredientsName,
@@ -69,13 +58,9 @@ namespace Inventory.Application.Modules.Ingredients.Commands.UpdateIngredients
                 }
 
                 ingredients.Update(entity.IngredientsName, entity.Description);
-                await repo.UpdateAsync(ingredients, token);
+                await repo.Update(ingredients);
                 await _uow.CommitAsync(token);
 
-                _logger.LogInformation(
-                    "Successfully updated Ingredients with Id={Id}",
-                    command.IdIngredients
-                );
                 return ingredients.ToIngredientsResponse();
             }
             catch (BusinessRuleException bex)

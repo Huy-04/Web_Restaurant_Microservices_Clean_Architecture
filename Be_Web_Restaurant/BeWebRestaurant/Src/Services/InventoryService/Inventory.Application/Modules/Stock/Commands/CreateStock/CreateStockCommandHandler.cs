@@ -24,18 +24,13 @@ namespace Inventory.Application.Modules.Stock.Commands.CreateStock
 
         public async Task<StockResponse> Handle(CreateStockCommand command, CancellationToken token)
         {
-            _logger.LogInformation("Handling create Stock");
-
             await _uow.BeginTransactionAsync(token);
             try
             {
                 var stock = command.Request.ToStock();
                 if (await _uow.StockRepo.ExistsByNameAsync(stock.StockName, token))
                 {
-                    _logger.LogWarning(
-                       "Create failed: Stock with Name:'{Name}' already exists",
-                       stock.StockName.Value
-                   );
+                    _logger.LogWarning("Create failed: Stock with Name '{Name}' already exists", stock.StockName.Value);
                     throw RuleFactory.SimpleRuleException
                         (ErrorCategory.Conflict,
                         StockField.StockName,
@@ -49,10 +44,6 @@ namespace Inventory.Application.Modules.Stock.Commands.CreateStock
                 await _uow.StockRepo.CreateAsync(stock, token);
                 await _uow.CommitAsync(token);
                 
-                _logger.LogInformation(
-                    "Successfully created Stock with Id={Id}",
-                    stock.Id
-                );
                 return stock.ToStockResponse();
             }
             catch (BusinessRuleException bex)

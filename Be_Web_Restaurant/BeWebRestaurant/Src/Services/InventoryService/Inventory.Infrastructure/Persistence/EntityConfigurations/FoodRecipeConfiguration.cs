@@ -1,4 +1,4 @@
-﻿using Common.PropertyConverters;
+﻿using Infrastructure.Core.PropertyConverters;
 using Inventory.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -25,7 +25,7 @@ namespace Inventory.Infrastructure.Persistence.EntityConfigurations
             entity.HasIndex(f => new { f.FoodId, f.IngredientsId }).IsUnique();
 
             entity.Property(f => f.Measurement)
-                .HasConversion(CommonConverters.MeasurementConverter)
+                .HasConversion(MeasurementConverterExtension.MeasurementConverter)
                 .IsRequired();
 
             entity.Property(f => f.CreatedAt)

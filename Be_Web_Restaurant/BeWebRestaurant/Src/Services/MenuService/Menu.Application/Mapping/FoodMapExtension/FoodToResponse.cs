@@ -1,4 +1,4 @@
-﻿using Common.Mapping.MoneyMapExtension;
+﻿using Application.Core.Mapping.MoneyMapExtension;
 using Menu.Application.DTOs.Responses.Food;
 using Menu.Domain.Entities;
 

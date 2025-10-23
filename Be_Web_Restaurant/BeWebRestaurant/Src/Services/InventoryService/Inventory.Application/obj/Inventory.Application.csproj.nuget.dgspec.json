@@ -36,8 +36,8 @@
               "C:\\Code\\Project\\Web_Restaurant\\Be_Web_Restaurant\\BeWebRestaurant\\Src\\Services\\InventoryService\\Inventory.Domain\\Inventory.Domain.csproj": {
                 "projectPath": "C:\\Code\\Project\\Web_Restaurant\\Be_Web_Restaurant\\BeWebRestaurant\\Src\\Services\\InventoryService\\Inventory.Domain\\Inventory.Domain.csproj"
               },
-              "C:\\Code\\Project\\Web_Restaurant\\Be_Web_Restaurant\\BeWebRestaurant\\Src\\Shared\\Common\\Common.csproj": {
-                "projectPath": "C:\\Code\\Project\\Web_Restaurant\\Be_Web_Restaurant\\BeWebRestaurant\\Src\\Shared\\Common\\Common.csproj"
+              "C:\\Code\\Project\\Web_Restaurant\\Be_Web_Restaurant\\BeWebRestaurant\\Src\\Shared\\Application.Core\\Application.Core.csproj": {
+                "projectPath": "C:\\Code\\Project\\Web_Restaurant\\Be_Web_Restaurant\\BeWebRestaurant\\Src\\Shared\\Application.Core\\Application.Core.csproj"
               }
             }
           }
@@ -144,20 +144,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[9.0.10, 9.0.10]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[9.0.10, 9.0.10]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[9.0.10, 9.0.10]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -167,14 +153,14 @@
         }
       }
     },
-    "C:\\Code\\Project\\Web_Restaurant\\Be_Web_Restaurant\\BeWebRestaurant\\Src\\Shared\\Common\\Common.csproj": {
+    "C:\\Code\\Project\\Web_Restaurant\\Be_Web_Restaurant\\BeWebRestaurant\\Src\\Shared\\Application.Core\\Application.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Code\\Project\\Web_Restaurant\\Be_Web_Restaurant\\BeWebRestaurant\\Src\\Shared\\Common\\Common.csproj",
-        "projectName": "Common",
-        "projectPath": "C:\\Code\\Project\\Web_Restaurant\\Be_Web_Restaurant\\BeWebRestaurant\\Src\\Shared\\Common\\Common.csproj",
+        "projectUniqueName": "C:\\Code\\Project\\Web_Restaurant\\Be_Web_Restaurant\\BeWebRestaurant\\Src\\Shared\\Application.Core\\Application.Core.csproj",
+        "projectName": "Application.Core",
+        "projectPath": "C:\\Code\\Project\\Web_Restaurant\\Be_Web_Restaurant\\BeWebRestaurant\\Src\\Shared\\Application.Core\\Application.Core.csproj",
         "packagesPath": "C:\\Users\\beer\\.nuget\\packages\\",
-        "outputPath": "C:\\Code\\Project\\Web_Restaurant\\Be_Web_Restaurant\\BeWebRestaurant\\Src\\Shared\\Common\\obj\\",
+        "outputPath": "C:\\Code\\Project\\Web_Restaurant\\Be_Web_Restaurant\\BeWebRestaurant\\Src\\Shared\\Application.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -221,18 +207,6 @@
             "MediatR": {
               "target": "Package",
               "version": "[13.0.0, )"
-            },
-            "Microsoft.AspNetCore.Mvc.Core": {
-              "target": "Package",
-              "version": "[2.3.0, )"
-            },
-            "Microsoft.EntityFrameworkCore.Cosmos": {
-              "target": "Package",
-              "version": "[9.0.5, )"
-            },
-            "Serilog.AspNetCore": {
-              "target": "Package",
-              "version": "[9.0.0, )"
             }
           },
           "imports": [
@@ -312,20 +286,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[9.0.10, 9.0.10]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[9.0.10, 9.0.10]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[9.0.10, 9.0.10]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"

@@ -24,11 +24,6 @@ namespace Inventory.Application.Modules.Stock.Commands.UpdateStock
 
         public async Task<StockResponse> Handle(UpdateStockCommand command, CancellationToken token)
         {
-            _logger.LogInformation(
-                "Handling update Stock with Id={Id}",
-                command.IdStock
-            );
-
             await _uow.BeginTransactionAsync(token);
             try
             {
@@ -37,10 +32,7 @@ namespace Inventory.Application.Modules.Stock.Commands.UpdateStock
                 var stock = await repo.GetByIdAsync(command.IdStock, token);
                 if (stock is null)
                 {
-                    _logger.LogWarning(
-                        "Update failed: Stock with Id={Id} not found",
-                        command.IdStock
-                    );
+                    _logger.LogWarning("Update failed: Stock with Id={Id} not found", command.IdStock);
                     throw RuleFactory.SimpleRuleException
                         (ErrorCategory.NotFound,
                         StockField.IdStock,
@@ -54,10 +46,7 @@ namespace Inventory.Application.Modules.Stock.Commands.UpdateStock
                 var entity = command.Request.ToStock();
                 if (await repo.ExistsByNameAsync(entity.StockName, token, stock.Id))
                 {
-                    _logger.LogWarning(
-                        "Update failed: Stock with Name:'{Name}' already exists",
-                        entity.StockName.Value
-                    );
+                    _logger.LogWarning("Update failed: Stock with Name '{Name}' already exists", entity.StockName.Value);
                     throw RuleFactory.SimpleRuleException
                         (ErrorCategory.Conflict,
                         StockField.StockName,
@@ -69,13 +58,9 @@ namespace Inventory.Application.Modules.Stock.Commands.UpdateStock
                 }
 
                 stock.Update(entity.StockName, entity.Description);
-                await repo.UpdateAsync(stock, token);
+                await repo.Update(stock);
                 await _uow.CommitAsync(token);
 
-                _logger.LogInformation(
-                    "Successfully updated Stock with Id={Id}",
-                    command.IdStock
-                );
                 return stock.ToStockResponse();
             }
             catch (BusinessRuleException bex)

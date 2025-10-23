@@ -1,4 +1,4 @@
-﻿using Common.PropertyConverters;
+﻿using Infrastructure.Core.PropertyConverters;
 using Menu.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -18,14 +18,16 @@ namespace Menu.Infrastructure.Persistence.EntityConfigurations
                 .HasConversion(MenuConverters.FoodNameConverter)
                 .HasMaxLength(50)
                 .IsRequired();
+            entity.HasIndex(f => f.FoodName).IsUnique()
+                .HasDatabaseName("IX_Food_FoodName_Unique");
 
             entity.Property(f => f.Img)
-                .HasConversion(CommonConverters.ImgConverter)
+                .HasConversion(CommonConverterExtension.ImgConverter)
                 .HasMaxLength(255)
                 .IsRequired();
 
             entity.Property(f => f.Description)
-                .HasConversion(CommonConverters.DescriptionConverter)
+                .HasConversion(CommonConverterExtension.DescriptionConverter)
                 .HasMaxLength(255)
                 .IsRequired();
 
@@ -34,7 +36,7 @@ namespace Menu.Infrastructure.Persistence.EntityConfigurations
                 .IsRequired();
 
             entity.Property(f => f.Money)
-                .HasConversion(CommonConverters.MoneyConverter)
+                .HasConversion(MoneyConverterExtension.MoneyConverter)
                 .HasColumnType("nvarchar(max)")
                 .IsRequired();
 

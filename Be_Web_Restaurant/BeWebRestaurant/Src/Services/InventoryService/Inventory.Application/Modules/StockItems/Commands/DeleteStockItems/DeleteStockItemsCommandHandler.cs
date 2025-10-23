@@ -22,21 +22,13 @@ namespace Inventory.Application.Modules.StockItems.Commands.DeleteStockItems
 
         public async Task<bool> Handle(DeleteStockItemsCommand command, CancellationToken token)
         {
-            _logger.LogInformation(
-                "Handling delete StockItems with Id={Id}",
-                command.IdStockItems
-            );
-
             await _uow.BeginTransactionAsync(token);
             try
             {
                 var exists = await _uow.StockItemsRepo.ExistsByIdAsync(command.IdStockItems, token);
                 if (!exists)
                 {
-                    _logger.LogWarning(
-                        "Delete failed: StockItems with Id={Id} not found",
-                        command.IdStockItems
-                    );
+                    _logger.LogWarning("Delete failed: StockItems with Id={Id} not found", command.IdStockItems);
                     throw RuleFactory.SimpleRuleException(
                         ErrorCategory.NotFound,
                         StockItemsField.IdStockItems,
@@ -50,10 +42,6 @@ namespace Inventory.Application.Modules.StockItems.Commands.DeleteStockItems
                 await _uow.StockItemsRepo.DeleteAsync(command.IdStockItems, token);
                 await _uow.CommitAsync(token);
 
-                _logger.LogInformation(
-                    "Successfully deleted StockItems with Id={Id}",
-                    command.IdStockItems
-                );
                 return true;
             }
             catch (BusinessRuleException bex)

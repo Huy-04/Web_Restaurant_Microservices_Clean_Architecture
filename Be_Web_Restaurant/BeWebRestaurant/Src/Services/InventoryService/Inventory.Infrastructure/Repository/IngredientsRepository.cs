@@ -35,9 +35,9 @@ namespace Inventory.Infrastructure.Repository
             return ingredients;
         }
 
-        public Task<Ingredients> UpdateAsync(Ingredients ingredients)
+        public Task<Ingredients> Update(Ingredients ingredients)
         {
-            var entity = _context.Update(ingredients);
+            _context.Update(ingredients);
             return Task.FromResult(ingredients);
         }
 

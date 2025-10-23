@@ -24,8 +24,6 @@ namespace Inventory.Application.Modules.FoodRecipe.Commands.UpdateFoodRecipe
 
         public async Task<FoodRecipeResponse> Handle(UpdateFoodRecipeCommand command, CancellationToken token)
         {
-            _logger.LogInformation("Handling update FoodRecipe with Id={Id}", command.IdFoodRecipe);
-
             await _uow.BeginTransactionAsync(token);
 
             try
@@ -82,12 +80,8 @@ namespace Inventory.Application.Modules.FoodRecipe.Commands.UpdateFoodRecipe
                 }
 
                 foodRecipe.Update(entity.FoodId, entity.IngredientsId, entity.Measurement);
-                await repo.UpdateAsync(foodRecipe);
+                await repo.Update(foodRecipe);
                 await _uow.CommitAsync(token);
-
-                _logger.LogInformation(
-                    "Successfully updated FoodRecipe with Id={Id}",
-                    command.IdFoodRecipe);
 
                 return foodRecipe.ToFoodRecipeResponse(ingredients.IngredientsName);
             }

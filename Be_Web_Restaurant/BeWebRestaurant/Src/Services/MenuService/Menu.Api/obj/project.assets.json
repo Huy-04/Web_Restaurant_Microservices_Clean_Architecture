@@ -2820,21 +2820,33 @@
           }
         }
       },
-      "Common/1.0.0": {
+      "Api.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
           "Domain.Core": "1.0.0",
-          "MediatR": "13.0.0",
-          "Microsoft.EntityFrameworkCore.Cosmos": "9.0.5",
           "Serilog.AspNetCore": "9.0.0",
           "Serilog.Enrichers.Activity": "1.0.0.3"
         },
         "compile": {
-          "bin/placeholder/Common.dll": {}
+          "bin/placeholder/Api.Core.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Common.dll": {}
+          "bin/placeholder/Api.Core.dll": {}
+        }
+      },
+      "Application.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "Domain.Core": "1.0.0",
+          "MediatR": "13.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Application.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Application.Core.dll": {}
         }
       },
       "Domain.Core/1.0.0": {
@@ -2847,11 +2859,25 @@
           "bin/placeholder/Domain.Core.dll": {}
         }
       },
+      "Infrastructure.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "Domain.Core": "1.0.0",
+          "Microsoft.EntityFrameworkCore.Cosmos": "9.0.5"
+        },
+        "compile": {
+          "bin/placeholder/Infrastructure.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Infrastructure.Core.dll": {}
+        }
+      },
       "Menu.Application/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
-          "Common": "1.0.0",
+          "Application.Core": "1.0.0",
           "MediatR": "13.0.0",
           "Menu.Domain": "1.0.0"
         },
@@ -2879,7 +2905,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
-          "Common": "1.0.0",
+          "Infrastructure.Core": "1.0.0",
           "Menu.Application": "1.0.0",
           "Menu.Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore": "9.0.5",
@@ -8724,15 +8750,25 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Common/1.0.0": {
+    "Api.Core/1.0.0": {
       "type": "project",
-      "path": "../../../Shared/Common/Common.csproj",
-      "msbuildProject": "../../../Shared/Common/Common.csproj"
+      "path": "../../../Shared/Api.Core/Api.Core.csproj",
+      "msbuildProject": "../../../Shared/Api.Core/Api.Core.csproj"
+    },
+    "Application.Core/1.0.0": {
+      "type": "project",
+      "path": "../../../Shared/Application.Core/Application.Core.csproj",
+      "msbuildProject": "../../../Shared/Application.Core/Application.Core.csproj"
     },
     "Domain.Core/1.0.0": {
       "type": "project",
       "path": "../../../Shared/Domain.Core/Domain.Core.csproj",
       "msbuildProject": "../../../Shared/Domain.Core/Domain.Core.csproj"
+    },
+    "Infrastructure.Core/1.0.0": {
+      "type": "project",
+      "path": "../../../Shared/Infrastructure.Core/Infrastructure.Core.csproj",
+      "msbuildProject": "../../../Shared/Infrastructure.Core/Infrastructure.Core.csproj"
     },
     "Menu.Application/1.0.0": {
       "type": "project",
@@ -8752,7 +8788,7 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
-      "Common >= 1.0.0",
+      "Api.Core >= 1.0.0",
       "Menu.Application >= 1.0.0",
       "Menu.Domain >= 1.0.0",
       "Menu.Infrastructure >= 1.0.0",
@@ -8805,8 +8841,8 @@
             "C:\\Code\\Project\\Web_Restaurant\\Be_Web_Restaurant\\BeWebRestaurant\\Src\\Services\\MenuService\\Menu.Infrastructure\\Menu.Infrastructure.csproj": {
               "projectPath": "C:\\Code\\Project\\Web_Restaurant\\Be_Web_Restaurant\\BeWebRestaurant\\Src\\Services\\MenuService\\Menu.Infrastructure\\Menu.Infrastructure.csproj"
             },
-            "C:\\Code\\Project\\Web_Restaurant\\Be_Web_Restaurant\\BeWebRestaurant\\Src\\Shared\\Common\\Common.csproj": {
-              "projectPath": "C:\\Code\\Project\\Web_Restaurant\\Be_Web_Restaurant\\BeWebRestaurant\\Src\\Shared\\Common\\Common.csproj"
+            "C:\\Code\\Project\\Web_Restaurant\\Be_Web_Restaurant\\BeWebRestaurant\\Src\\Shared\\Api.Core\\Api.Core.csproj": {
+              "projectPath": "C:\\Code\\Project\\Web_Restaurant\\Be_Web_Restaurant\\BeWebRestaurant\\Src\\Shared\\Api.Core\\Api.Core.csproj"
             }
           }
         }

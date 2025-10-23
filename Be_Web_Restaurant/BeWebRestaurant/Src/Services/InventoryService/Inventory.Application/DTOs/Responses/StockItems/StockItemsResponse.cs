@@ -1,6 +1,5 @@
-﻿using Common.DTOs.Responses.Measurement;
+﻿using Application.Core.DTOs.Responses.Measurement;
 using Inventory.Domain.Enums;
-using Inventory.Domain.ValueObjects.StockItems;
 
 namespace Inventory.Application.DTOs.Responses.StockItems
 {

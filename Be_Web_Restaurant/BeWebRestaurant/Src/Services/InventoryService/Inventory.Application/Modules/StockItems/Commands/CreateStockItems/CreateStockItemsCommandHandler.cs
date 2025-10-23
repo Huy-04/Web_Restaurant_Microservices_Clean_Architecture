@@ -25,8 +25,6 @@ namespace Inventory.Application.Modules.StockItems.Commands.CreateStockItems
 
         public async Task<StockItemsResponse> Handle(CreateStockItemsCommand command, CancellationToken token)
         {
-            _logger.LogInformation("Handling create StockItems");
-
             await _uow.BeginTransactionAsync(token);
             try
             {
@@ -34,10 +32,7 @@ namespace Inventory.Application.Modules.StockItems.Commands.CreateStockItems
                 var stock = await _uow.StockRepo.GetByIdAsync(stockItems.StockId, token);
                 if (stock is null)
                 {
-                    _logger.LogWarning(
-                        "Create failed: Stock with Id={Id} not found",
-                        stockItems.StockId
-                    );
+                    _logger.LogWarning("Create failed: Stock with Id={Id} not found", stockItems.StockId);
                     throw RuleFactory.SimpleRuleException(
                         ErrorCategory.NotFound,
                         StockField.IdStock,
@@ -51,10 +46,7 @@ namespace Inventory.Application.Modules.StockItems.Commands.CreateStockItems
                 var ingredients = await _uow.IngredientsRepo.GetByIdAsync(stockItems.IngredientsId, token);
                 if (ingredients is null)
                 {
-                    _logger.LogWarning(
-                        "Create failed: Ingredients with Id={Id} not found",
-                        stockItems.IngredientsId
-                    );
+                    _logger.LogWarning("Create failed: Ingredients with Id={Id} not found", stockItems.IngredientsId);
                     throw RuleFactory.SimpleRuleException(
                         ErrorCategory.NotFound,
                         IngredientsField.IdIngredients,
@@ -67,11 +59,8 @@ namespace Inventory.Application.Modules.StockItems.Commands.CreateStockItems
 
                 if (await _uow.StockItemsRepo.ExistsByStockIdAndIngredientsIdAsync(stockItems.StockId, stockItems.IngredientsId, token))
                 {
-                    _logger.LogWarning(
-                        "Create failed: StockItems with StockId={StockId} and IngredientsId={IngredientsId} already exists",
-                        stockItems.StockId,
-                        stockItems.IngredientsId
-                    );
+                    _logger.LogWarning("Create failed: StockItems with StockId={StockId} and IngredientsId={IngredientsId} already exists", 
+                        stockItems.StockId, stockItems.IngredientsId);
                     throw RuleFactory.SimpleRuleException(
                         ErrorCategory.Conflict,
                         StockItemsField.StockIdAndIngredientsId,
@@ -92,10 +81,6 @@ namespace Inventory.Application.Modules.StockItems.Commands.CreateStockItems
                 await _uow.StockItemsRepo.CreateAsync(stockItems, token);
                 await _uow.CommitAsync(token);
 
-                _logger.LogInformation(
-                    "Successfully created StockItems with Id={Id}",
-                    stockItems.Id
-                );
                 return stockItems.ToStockItemsResponse(stock.StockName, ingredients.IngredientsName);
             }
             catch (BusinessRuleException bex)
