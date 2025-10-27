@@ -1,0 +1,206 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Code\\Project\\Web_Restaurant\\BeWebRestaurant\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B95E3982-5339-4058-B166-65DC8F418DB1}|Src\\Services\\MenuService\\Menu.Application\\Menu.Application.csproj|c:\\code\\project\\web_restaurant\\bewebrestaurant\\src\\services\\menuservice\\menu.application\\modules\\food\\queries\\getfoodbystatus\\getfoodbystatusqhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B95E3982-5339-4058-B166-65DC8F418DB1}|Src\\Services\\MenuService\\Menu.Application\\Menu.Application.csproj|solutionrelative:src\\services\\menuservice\\menu.application\\modules\\food\\queries\\getfoodbystatus\\getfoodbystatusqhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E39A46A5-8E52-4F2B-9377-4E2F0F21DE6F}|Src\\Services\\MenuService\\Menu.Infrastructure\\Menu.Infrastructure.csproj|c:\\code\\project\\web_restaurant\\bewebrestaurant\\src\\services\\menuservice\\menu.infrastructure\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E39A46A5-8E52-4F2B-9377-4E2F0F21DE6F}|Src\\Services\\MenuService\\Menu.Infrastructure\\Menu.Infrastructure.csproj|solutionrelative:src\\services\\menuservice\\menu.infrastructure\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E5808E15-36EE-4BEF-ADC3-F6E4C7B9CE06}|Src\\Services\\MenuService\\Menu.Api\\Menu.Api.csproj|c:\\code\\project\\web_restaurant\\bewebrestaurant\\src\\services\\menuservice\\menu.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E5808E15-36EE-4BEF-ADC3-F6E4C7B9CE06}|Src\\Services\\MenuService\\Menu.Api\\Menu.Api.csproj|solutionrelative:src\\services\\menuservice\\menu.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E39A46A5-8E52-4F2B-9377-4E2F0F21DE6F}|Src\\Services\\MenuService\\Menu.Infrastructure\\Menu.Infrastructure.csproj|c:\\code\\project\\web_restaurant\\bewebrestaurant\\src\\services\\menuservice\\menu.infrastructure\\repository\\foodrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E39A46A5-8E52-4F2B-9377-4E2F0F21DE6F}|Src\\Services\\MenuService\\Menu.Infrastructure\\Menu.Infrastructure.csproj|solutionrelative:src\\services\\menuservice\\menu.infrastructure\\repository\\foodrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E39A46A5-8E52-4F2B-9377-4E2F0F21DE6F}|Src\\Services\\MenuService\\Menu.Infrastructure\\Menu.Infrastructure.csproj|c:\\code\\project\\web_restaurant\\bewebrestaurant\\src\\services\\menuservice\\menu.infrastructure\\persistence\\menudbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E39A46A5-8E52-4F2B-9377-4E2F0F21DE6F}|Src\\Services\\MenuService\\Menu.Infrastructure\\Menu.Infrastructure.csproj|solutionrelative:src\\services\\menuservice\\menu.infrastructure\\persistence\\menudbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E5808E15-36EE-4BEF-ADC3-F6E4C7B9CE06}|Src\\Services\\MenuService\\Menu.Api\\Menu.Api.csproj|c:\\code\\project\\web_restaurant\\bewebrestaurant\\src\\services\\menuservice\\menu.api\\controllers\\foodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E5808E15-36EE-4BEF-ADC3-F6E4C7B9CE06}|Src\\Services\\MenuService\\Menu.Api\\Menu.Api.csproj|solutionrelative:src\\services\\menuservice\\menu.api\\controllers\\foodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{54CF73B5-46E5-407E-80E8-5410B034ACEA}|Src\\Services\\InventoryService\\Inventory.Api\\Inventory.Api.csproj|c:\\code\\project\\web_restaurant\\bewebrestaurant\\src\\services\\inventoryservice\\inventory.api\\controllers\\stockitemscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{54CF73B5-46E5-407E-80E8-5410B034ACEA}|Src\\Services\\InventoryService\\Inventory.Api\\Inventory.Api.csproj|solutionrelative:src\\services\\inventoryservice\\inventory.api\\controllers\\stockitemscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DAD8887-1303-47E1-A6D7-4CE910FAEA56}|Src\\Services\\InventoryService\\Inventory.Infrastructure\\Inventory.Infrastructure.csproj|c:\\code\\project\\web_restaurant\\bewebrestaurant\\src\\services\\inventoryservice\\inventory.infrastructure\\persistence\\entityconfigurations\\stockitemsconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DAD8887-1303-47E1-A6D7-4CE910FAEA56}|Src\\Services\\InventoryService\\Inventory.Infrastructure\\Inventory.Infrastructure.csproj|solutionrelative:src\\services\\inventoryservice\\inventory.infrastructure\\persistence\\entityconfigurations\\stockitemsconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DAD8887-1303-47E1-A6D7-4CE910FAEA56}|Src\\Services\\InventoryService\\Inventory.Infrastructure\\Inventory.Infrastructure.csproj|c:\\code\\project\\web_restaurant\\bewebrestaurant\\src\\services\\inventoryservice\\inventory.infrastructure\\persistence\\entityconfigurations\\stockconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DAD8887-1303-47E1-A6D7-4CE910FAEA56}|Src\\Services\\InventoryService\\Inventory.Infrastructure\\Inventory.Infrastructure.csproj|solutionrelative:src\\services\\inventoryservice\\inventory.infrastructure\\persistence\\entityconfigurations\\stockconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DAD8887-1303-47E1-A6D7-4CE910FAEA56}|Src\\Services\\InventoryService\\Inventory.Infrastructure\\Inventory.Infrastructure.csproj|c:\\code\\project\\web_restaurant\\bewebrestaurant\\src\\services\\inventoryservice\\inventory.infrastructure\\persistence\\entityconfigurations\\ingredientsconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DAD8887-1303-47E1-A6D7-4CE910FAEA56}|Src\\Services\\InventoryService\\Inventory.Infrastructure\\Inventory.Infrastructure.csproj|solutionrelative:src\\services\\inventoryservice\\inventory.infrastructure\\persistence\\entityconfigurations\\ingredientsconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DAD8887-1303-47E1-A6D7-4CE910FAEA56}|Src\\Services\\InventoryService\\Inventory.Infrastructure\\Inventory.Infrastructure.csproj|c:\\code\\project\\web_restaurant\\bewebrestaurant\\src\\services\\inventoryservice\\inventory.infrastructure\\persistence\\entityconfigurations\\foodrecipeconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DAD8887-1303-47E1-A6D7-4CE910FAEA56}|Src\\Services\\InventoryService\\Inventory.Infrastructure\\Inventory.Infrastructure.csproj|solutionrelative:src\\services\\inventoryservice\\inventory.infrastructure\\persistence\\entityconfigurations\\foodrecipeconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GetFoodByStatusQHandler.cs",
+              "DocumentMoniker": "C:\\Code\\Project\\Web_Restaurant\\BeWebRestaurant\\Src\\Services\\MenuService\\Menu.Application\\Modules\\Food\\Queries\\GetFoodByStatus\\GetFoodByStatusQHandler.cs",
+              "RelativeDocumentMoniker": "Src\\Services\\MenuService\\Menu.Application\\Modules\\Food\\Queries\\GetFoodByStatus\\GetFoodByStatusQHandler.cs",
+              "ToolTip": "C:\\Code\\Project\\Web_Restaurant\\BeWebRestaurant\\Src\\Services\\MenuService\\Menu.Application\\Modules\\Food\\Queries\\GetFoodByStatus\\GetFoodByStatusQHandler.cs",
+              "RelativeToolTip": "Src\\Services\\MenuService\\Menu.Application\\Modules\\Food\\Queries\\GetFoodByStatus\\GetFoodByStatusQHandler.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T14:36:34.188Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FoodRepository.cs",
+              "DocumentMoniker": "C:\\Code\\Project\\Web_Restaurant\\BeWebRestaurant\\Src\\Services\\MenuService\\Menu.Infrastructure\\Repository\\FoodRepository.cs",
+              "RelativeDocumentMoniker": "Src\\Services\\MenuService\\Menu.Infrastructure\\Repository\\FoodRepository.cs",
+              "ToolTip": "C:\\Code\\Project\\Web_Restaurant\\BeWebRestaurant\\Src\\Services\\MenuService\\Menu.Infrastructure\\Repository\\FoodRepository.cs",
+              "RelativeToolTip": "Src\\Services\\MenuService\\Menu.Infrastructure\\Repository\\FoodRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T14:25:53.509Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Code\\Project\\Web_Restaurant\\BeWebRestaurant\\Src\\Services\\MenuService\\Menu.Api\\Program.cs",
+              "RelativeDocumentMoniker": "Src\\Services\\MenuService\\Menu.Api\\Program.cs",
+              "ToolTip": "C:\\Code\\Project\\Web_Restaurant\\BeWebRestaurant\\Src\\Services\\MenuService\\Menu.Api\\Program.cs",
+              "RelativeToolTip": "Src\\Services\\MenuService\\Menu.Api\\Program.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAACIAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T14:22:36.259Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DependencyInjection.cs",
+              "DocumentMoniker": "C:\\Code\\Project\\Web_Restaurant\\BeWebRestaurant\\Src\\Services\\MenuService\\Menu.Infrastructure\\DependencyInjection.cs",
+              "RelativeDocumentMoniker": "Src\\Services\\MenuService\\Menu.Infrastructure\\DependencyInjection.cs",
+              "ToolTip": "C:\\Code\\Project\\Web_Restaurant\\BeWebRestaurant\\Src\\Services\\MenuService\\Menu.Infrastructure\\DependencyInjection.cs",
+              "RelativeToolTip": "Src\\Services\\MenuService\\Menu.Infrastructure\\DependencyInjection.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAcwBsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T14:20:59.373Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FoodController.cs",
+              "DocumentMoniker": "C:\\Code\\Project\\Web_Restaurant\\BeWebRestaurant\\Src\\Services\\MenuService\\Menu.Api\\Controllers\\FoodController.cs",
+              "RelativeDocumentMoniker": "Src\\Services\\MenuService\\Menu.Api\\Controllers\\FoodController.cs",
+              "ToolTip": "C:\\Code\\Project\\Web_Restaurant\\BeWebRestaurant\\Src\\Services\\MenuService\\Menu.Api\\Controllers\\FoodController.cs",
+              "RelativeToolTip": "Src\\Services\\MenuService\\Menu.Api\\Controllers\\FoodController.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAkwDsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T14:18:06.844Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MenuDbContext.cs",
+              "DocumentMoniker": "C:\\Code\\Project\\Web_Restaurant\\BeWebRestaurant\\Src\\Services\\MenuService\\Menu.Infrastructure\\Persistence\\MenuDbContext.cs",
+              "RelativeDocumentMoniker": "Src\\Services\\MenuService\\Menu.Infrastructure\\Persistence\\MenuDbContext.cs",
+              "ToolTip": "C:\\Code\\Project\\Web_Restaurant\\BeWebRestaurant\\Src\\Services\\MenuService\\Menu.Infrastructure\\Persistence\\MenuDbContext.cs",
+              "RelativeToolTip": "Src\\Services\\MenuService\\Menu.Infrastructure\\Persistence\\MenuDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T13:52:06.711Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "StockItemsController.cs",
+              "DocumentMoniker": "C:\\Code\\Project\\Web_Restaurant\\BeWebRestaurant\\Src\\Services\\InventoryService\\Inventory.Api\\Controllers\\StockItemsController.cs",
+              "RelativeDocumentMoniker": "Src\\Services\\InventoryService\\Inventory.Api\\Controllers\\StockItemsController.cs",
+              "ToolTip": "C:\\Code\\Project\\Web_Restaurant\\BeWebRestaurant\\Src\\Services\\InventoryService\\Inventory.Api\\Controllers\\StockItemsController.cs",
+              "RelativeToolTip": "Src\\Services\\InventoryService\\Inventory.Api\\Controllers\\StockItemsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-23T04:53:48.697Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "StockItemsConfiguration.cs",
+              "DocumentMoniker": "C:\\Code\\Project\\Web_Restaurant\\BeWebRestaurant\\Src\\Services\\InventoryService\\Inventory.Infrastructure\\Persistence\\EntityConfigurations\\StockItemsConfiguration.cs",
+              "RelativeDocumentMoniker": "Src\\Services\\InventoryService\\Inventory.Infrastructure\\Persistence\\EntityConfigurations\\StockItemsConfiguration.cs",
+              "ToolTip": "C:\\Code\\Project\\Web_Restaurant\\BeWebRestaurant\\Src\\Services\\InventoryService\\Inventory.Infrastructure\\Persistence\\EntityConfigurations\\StockItemsConfiguration.cs",
+              "RelativeToolTip": "Src\\Services\\InventoryService\\Inventory.Infrastructure\\Persistence\\EntityConfigurations\\StockItemsConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-23T04:53:23.254Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "StockConfiguration.cs",
+              "DocumentMoniker": "C:\\Code\\Project\\Web_Restaurant\\BeWebRestaurant\\Src\\Services\\InventoryService\\Inventory.Infrastructure\\Persistence\\EntityConfigurations\\StockConfiguration.cs",
+              "RelativeDocumentMoniker": "Src\\Services\\InventoryService\\Inventory.Infrastructure\\Persistence\\EntityConfigurations\\StockConfiguration.cs",
+              "ToolTip": "C:\\Code\\Project\\Web_Restaurant\\BeWebRestaurant\\Src\\Services\\InventoryService\\Inventory.Infrastructure\\Persistence\\EntityConfigurations\\StockConfiguration.cs",
+              "RelativeToolTip": "Src\\Services\\InventoryService\\Inventory.Infrastructure\\Persistence\\EntityConfigurations\\StockConfiguration.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwBIAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-23T04:53:06.572Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "IngredientsConfiguration.cs",
+              "DocumentMoniker": "C:\\Code\\Project\\Web_Restaurant\\BeWebRestaurant\\Src\\Services\\InventoryService\\Inventory.Infrastructure\\Persistence\\EntityConfigurations\\IngredientsConfiguration.cs",
+              "RelativeDocumentMoniker": "Src\\Services\\InventoryService\\Inventory.Infrastructure\\Persistence\\EntityConfigurations\\IngredientsConfiguration.cs",
+              "ToolTip": "C:\\Code\\Project\\Web_Restaurant\\BeWebRestaurant\\Src\\Services\\InventoryService\\Inventory.Infrastructure\\Persistence\\EntityConfigurations\\IngredientsConfiguration.cs",
+              "RelativeToolTip": "Src\\Services\\InventoryService\\Inventory.Infrastructure\\Persistence\\EntityConfigurations\\IngredientsConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-23T04:52:32.051Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "FoodRecipeConfiguration.cs",
+              "DocumentMoniker": "C:\\Code\\Project\\Web_Restaurant\\BeWebRestaurant\\Src\\Services\\InventoryService\\Inventory.Infrastructure\\Persistence\\EntityConfigurations\\FoodRecipeConfiguration.cs",
+              "RelativeDocumentMoniker": "Src\\Services\\InventoryService\\Inventory.Infrastructure\\Persistence\\EntityConfigurations\\FoodRecipeConfiguration.cs",
+              "ToolTip": "C:\\Code\\Project\\Web_Restaurant\\BeWebRestaurant\\Src\\Services\\InventoryService\\Inventory.Infrastructure\\Persistence\\EntityConfigurations\\FoodRecipeConfiguration.cs",
+              "RelativeToolTip": "Src\\Services\\InventoryService\\Inventory.Infrastructure\\Persistence\\EntityConfigurations\\FoodRecipeConfiguration.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwB4AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-23T04:51:47.368Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
