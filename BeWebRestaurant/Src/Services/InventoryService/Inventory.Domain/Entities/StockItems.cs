@@ -44,7 +44,7 @@ namespace Inventory.Domain.Entities
 
         public static StockItems Create(Guid StockId, Guid ingredientsId, Capacity capacity, UnitEnum unit)
         {
-            var entity = new StockItems(Guid.NewGuid(), StockId, ingredientsId, Measurement.Create(0, unit), capacity, StockItemsStatus.Create(StockItemsStatusEnum.OutOfStock));
+            var entity = new StockItems(Guid.NewGuid(), StockId, ingredientsId, Measurement.Create(1, unit), capacity, StockItemsStatus.Create(StockItemsStatusEnum.OutOfStock));
             entity.AddDomainEvent(new StockItemsCreatedEvent(entity.Id, entity.StockId, entity.IngredientsId));
             return entity;
         }

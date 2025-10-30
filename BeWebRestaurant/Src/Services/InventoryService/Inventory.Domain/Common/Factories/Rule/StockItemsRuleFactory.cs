@@ -27,5 +27,10 @@ namespace Inventory.Domain.Common.Factories.Rule
         {
             return new NotNegativeRule<decimal>(capacity, StockItemsField.Capacity);
         }
+
+        public static IBusinessRule CapacityNotZero(decimal capacity)
+        {
+            return new NotZeroRule<decimal>(capacity, StockItemsField.Capacity);
+        }
     }
 }

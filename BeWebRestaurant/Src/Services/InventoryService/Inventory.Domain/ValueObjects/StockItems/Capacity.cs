@@ -14,7 +14,8 @@ namespace Inventory.Domain.ValueObjects.StockItems
         {
             RuleValidator.CheckRules(new IBusinessRule[]
             {
-                StockItemsRuleFactory.CapacityNotNegative(value)
+                StockItemsRuleFactory.CapacityNotNegative(value),
+                StockItemsRuleFactory.CapacityNotZero(value)
             });
             return new Capacity(value);
         }

@@ -1,7 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Code\\Project\\Web_Restaurant\\BeWebRestaurant\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6EB1B58A-7C19-401A-862D-956579DE067D}|Src\\Shared\\Domain.Core\\Domain.Core.csproj|c:\\code\\project\\web_restaurant\\bewebrestaurant\\src\\shared\\domain.core\\valueobjects\\pricelist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EB1B58A-7C19-401A-862D-956579DE067D}|Src\\Shared\\Domain.Core\\Domain.Core.csproj|solutionrelative:src\\shared\\domain.core\\valueobjects\\pricelist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,8 +14,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PriceList.cs",
+              "DocumentMoniker": "C:\\Code\\Project\\Web_Restaurant\\BeWebRestaurant\\Src\\Shared\\Domain.Core\\ValueObjects\\PriceList.cs",
+              "RelativeDocumentMoniker": "Src\\Shared\\Domain.Core\\ValueObjects\\PriceList.cs",
+              "ToolTip": "C:\\Code\\Project\\Web_Restaurant\\BeWebRestaurant\\Src\\Shared\\Domain.Core\\ValueObjects\\PriceList.cs",
+              "RelativeToolTip": "Src\\Shared\\Domain.Core\\ValueObjects\\PriceList.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-30T18:17:20.398Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"

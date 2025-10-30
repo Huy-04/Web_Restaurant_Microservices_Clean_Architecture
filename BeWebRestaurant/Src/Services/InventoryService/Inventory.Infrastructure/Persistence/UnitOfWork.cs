@@ -1,7 +1,5 @@
 ﻿using Inventory.Application.Interface;
 using Inventory.Domain.IRepository;
-using MediatR;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
