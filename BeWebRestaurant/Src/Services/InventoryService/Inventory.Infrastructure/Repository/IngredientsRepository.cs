@@ -1,4 +1,4 @@
-﻿using Inventory.Application.Interfaces;
+﻿using Inventory.Domain.IRepository;
 using Inventory.Domain.Entities;
 using Inventory.Domain.ValueObjects.Ingredients;
 using Inventory.Infrastructure.Persistence;

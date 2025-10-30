@@ -1186,9 +1186,8 @@
           "Serilog.Enrichers.Activity": "1.0.0.3"
         },
         "runtime": {
-          "Api.Core.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
+          "API.Core.dll": {
+            "fileVersion": "0.0.0.0"
           }
         }
       },

@@ -3,7 +3,7 @@ using Domain.Core.Messages.FieldNames;
 using Domain.Core.Rule.RuleFactory;
 using Domain.Core.RuleException;
 using Inventory.Application.DTOs.Responses.FoodRecipe;
-using Inventory.Application.Interfaces;
+using Inventory.Application.Interface;
 using Inventory.Application.Mapping.FoodRecipeMapExtension;
 using Inventory.Domain.Common.Messages.FieldNames;
 using MediatR;
@@ -66,13 +66,14 @@ namespace Inventory.Application.Modules.FoodRecipe.Commands.CreateFoodRecipe
                 }
 
                 await _uow.FoodRecipesRepo.CreateAsync(foodRecipe);
+                await _uow.SaveChangesAsync(token);
                 await _uow.CommitAsync(token);
 
                 return foodRecipe.ToFoodRecipeResponse(ingredients.IngredientsName);
             }
             catch (BusinessRuleException bex)
             {
-                await _uow.RollBackAsync(token);
+                await _uow.RollbackAsync(token);
                 _logger.LogWarning(bex,
                     "BusinessRule Exception occurred while creating FoodRecipe. Request: {@Request}",
                     command.Request
@@ -81,9 +82,9 @@ namespace Inventory.Application.Modules.FoodRecipe.Commands.CreateFoodRecipe
             }
             catch (Exception ex)
             {
-                await _uow.RollBackAsync(token);
+                await _uow.RollbackAsync(token);
                 _logger.LogError(ex,
-                    "Exception occurred while creating Stock. Request: {@Request}",
+                    "Exception occurred while creating FoodRecipe. Request: {@Request}",
                     command.Request
                 );
                 throw;

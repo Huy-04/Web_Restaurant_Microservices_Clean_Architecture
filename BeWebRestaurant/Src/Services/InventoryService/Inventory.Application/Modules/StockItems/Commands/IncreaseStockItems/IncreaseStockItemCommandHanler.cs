@@ -4,7 +4,7 @@ using Domain.Core.Messages.FieldNames;
 using Domain.Core.Rule.RuleFactory;
 using Domain.Core.RuleException;
 using Inventory.Application.DTOs.Responses.StockItems;
-using Inventory.Application.Interfaces;
+using Inventory.Application.Interface;
 using Inventory.Application.Mapping.StockItemsMapExtension;
 using Inventory.Domain.Common.Messages.FieldNames;
 using MediatR;
@@ -34,7 +34,7 @@ namespace Inventory.Application.Modules.StockItems.Commands.IncreaseStockItems
 
             try
             {
-                var stockItems = await _uow.StockItemsRepo.GetByIdAsync(command.IdStockItems);
+                var stockItems = await _uow.StockItemsRepo.GetByIdAsync(command.IdStockItems, token);
                 if (stockItems is null)
                 {
                     _logger.LogWarning(
@@ -50,11 +50,12 @@ namespace Inventory.Application.Modules.StockItems.Commands.IncreaseStockItems
                             {ParamField.Value,command.IdStockItems }
                         });
                 }
-                var stock = await _uow.StockRepo.GetByIdAsync(stockItems.StockId);
-                var ingredients = await _uow.IngredientsRepo.GetByIdAsync(stockItems.IngredientsId);
+                var stock = await _uow.StockRepo.GetByIdAsync(stockItems.StockId, token);
+                var ingredients = await _uow.IngredientsRepo.GetByIdAsync(stockItems.IngredientsId, token);
                 var measurement = command.Request.ToMeasurement();
                 stockItems.IncreaseMeasurement(measurement);
                 await _uow.StockItemsRepo.Update(stockItems);
+                await _uow.SaveChangesAsync(token);
                 await _uow.CommitAsync(token);
 
                 _logger.LogInformation(
@@ -65,7 +66,7 @@ namespace Inventory.Application.Modules.StockItems.Commands.IncreaseStockItems
             }
             catch (BusinessRuleException bex)
             {
-                await _uow.RollBackAsync(token);
+                await _uow.RollbackAsync(token);
                 _logger.LogWarning(bex,
                     "BusinessRule Exception occurred while increasing StockItems with Id={Id}. Request: {@Request}",
                     command.IdStockItems,
@@ -75,7 +76,7 @@ namespace Inventory.Application.Modules.StockItems.Commands.IncreaseStockItems
             }
             catch (Exception ex)
             {
-                await _uow.RollBackAsync(token);
+                await _uow.RollbackAsync(token);
                 _logger.LogError(ex,
                     "Exception occurred while increasing StockItems with Id={Id}. Request: {@Request}",
                     command.IdStockItems,

@@ -3,7 +3,7 @@ using Domain.Core.Messages.FieldNames;
 using Domain.Core.Rule.RuleFactory;
 using MediatR;
 using Menu.Application.DTOs.Responses.Food;
-using Menu.Application.Interfaces;
+using Menu.Application.Interface;
 using Menu.Application.Mapping.FoodMapExtension;
 using Menu.Domain.Common.Messages.FieldNames;
 

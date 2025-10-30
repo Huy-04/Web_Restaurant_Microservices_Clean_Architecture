@@ -2,7 +2,8 @@
 using Domain.Core.Messages.FieldNames;
 using Domain.Core.Rule.RuleFactory;
 using Inventory.Application.DTOs.Responses.Stock;
-using Inventory.Application.Interfaces;
+using Inventory.Application.Interface;
+using Inventory.Application.Interface;
 using Inventory.Application.Mapping.StockMapExtension;
 using Inventory.Domain.Common.Messages.FieldNames;
 using MediatR;

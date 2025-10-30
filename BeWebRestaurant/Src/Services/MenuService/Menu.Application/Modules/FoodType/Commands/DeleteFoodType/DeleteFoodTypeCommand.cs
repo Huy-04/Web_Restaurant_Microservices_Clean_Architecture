@@ -1,8 +1,7 @@
 ﻿using MediatR;
 
-namespace Menu.Application.Modules.FoodTypes.Commands.DeleteFoodType
+namespace Menu.Application.Modules.FoodType.Commands.DeleteFoodType
 {
-    public sealed record DeleteFoodTypeCommand(Guid IdFoodType)
-        : IRequest<bool>
+    public sealed record DeleteFoodTypeCommand(Guid IdFoodType) : IRequest<bool>
     { }
 }

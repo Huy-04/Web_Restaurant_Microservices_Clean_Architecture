@@ -42,7 +42,7 @@ namespace Inventory.Api.Controllers
             return Ok(result);
         }
 
-        // Get: api/Fooecipe/food/{id}
+        // Get: api/FoodRecipe/food/{id}
         [HttpGet("food/{id:guid}")]
         public async Task<ActionResult<IEnumerable<FoodRecipeResponse>>> GetByFood
             ([FromRoute] Guid id, CancellationToken token)

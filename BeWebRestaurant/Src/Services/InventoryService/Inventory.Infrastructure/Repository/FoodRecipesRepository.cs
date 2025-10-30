@@ -1,4 +1,4 @@
-﻿using Inventory.Application.Interfaces;
+﻿using Inventory.Domain.IRepository;
 using Inventory.Domain.Entities;
 using Inventory.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -82,7 +82,14 @@ namespace Inventory.Infrastructure.Repository
                 && f.IngredientsId == ingredientsId, token);
         }
 
-        public async Task<bool> ExistsByIngredientsIdAsync(Guid ingredientsId, CancellationToken token )
+        public async Task<bool> ExistsByIdAsync(Guid idFoodRecipe, CancellationToken token)
+        {
+            return await _context.FoodRecipes
+                .AsNoTracking()
+                .AnyAsync(f => f.Id == idFoodRecipe, token);
+        }
+
+        public async Task<bool> ExistsByIngredientsIdAsync(Guid ingredientsId, CancellationToken token)
         {
             return await _context.FoodRecipes
                 .AsNoTracking()

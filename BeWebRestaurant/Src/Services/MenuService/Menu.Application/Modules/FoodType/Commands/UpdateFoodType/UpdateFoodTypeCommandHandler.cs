@@ -4,12 +4,12 @@ using Domain.Core.Rule.RuleFactory;
 using Domain.Core.RuleException;
 using MediatR;
 using Menu.Application.DTOs.Responses.FoodType;
-using Menu.Application.Interfaces;
+using Menu.Application.Interface;
 using Menu.Application.Mapping.FoodTypeMapExtension;
 using Menu.Domain.Common.Messages.FieldNames;
 using Microsoft.Extensions.Logging;
 
-namespace Menu.Application.Modules.FoodTypes.Commands.UpdateFoodType
+namespace Menu.Application.Modules.FoodType.Commands.UpdateFoodType
 {
     public sealed class UpdateFoodTypeCommandHandler : IRequestHandler<UpdateFoodTypeCommand, FoodTypeResponse>
     {
@@ -59,13 +59,14 @@ namespace Menu.Application.Modules.FoodTypes.Commands.UpdateFoodType
 
                 foodType.UpdateName(newName);
                 await repo.Update(foodType);
+                await _uow.SaveChangesAsync(token);
                 await _uow.CommitAsync(token);
 
                 return foodType.ToFoodTypeResponse();
             }
             catch (BusinessRuleException bex)
             {
-                await _uow.RollBackAsync(token);
+                await _uow.RollbackAsync(token);
                 _logger.LogWarning(
                     bex,
                     "BusinessRule Exception occurred while updating FoodType with Id={Id}. Request: {@Request}",
@@ -76,7 +77,7 @@ namespace Menu.Application.Modules.FoodTypes.Commands.UpdateFoodType
             }
             catch (Exception ex)
             {
-                await _uow.RollBackAsync(token);
+                await _uow.RollbackAsync(token);
                 _logger.LogError(
                     ex,
                     "Exception occurred while updating FoodType with Id={Id}. Request: {@Request}",

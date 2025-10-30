@@ -4,12 +4,12 @@ using Domain.Core.Rule.RuleFactory;
 using Domain.Core.RuleException;
 using MediatR;
 using Menu.Application.DTOs.Responses.FoodType;
-using Menu.Application.Interfaces;
+using Menu.Application.Interface;
 using Menu.Application.Mapping.FoodTypeMapExtension;
 using Menu.Domain.Common.Messages.FieldNames;
 using Microsoft.Extensions.Logging;
 
-namespace Menu.Application.Modules.FoodTypes.Commands.CreateFoodType
+namespace Menu.Application.Modules.FoodType.Commands.CreateFoodType
 {
     public sealed class CreateFoodTypeCommandHandler : IRequestHandler<CreateFoodTypeCommand, FoodTypeResponse>
     {
@@ -43,13 +43,14 @@ namespace Menu.Application.Modules.FoodTypes.Commands.CreateFoodType
 
                 var foodType = command.Request.ToFoodType();
                 await _uow.FoodTypeRepo.CreateAsync(foodType, token);
+                await _uow.SaveChangesAsync(token);
                 await _uow.CommitAsync(token);
 
                 return foodType.ToFoodTypeResponse();
             }
             catch (BusinessRuleException bex)
             {
-                await _uow.RollBackAsync(token);
+                await _uow.RollbackAsync(token);
                 _logger.LogWarning(bex,
                     "BusinessRule Exception occurred while creating FoodType. Request: {@Request}",
                     command.Request
@@ -58,7 +59,7 @@ namespace Menu.Application.Modules.FoodTypes.Commands.CreateFoodType
             }
             catch (Exception ex)
             {
-                await _uow.RollBackAsync(token);
+                await _uow.RollbackAsync(token);
                 _logger.LogError(ex,
                     "Exception occurred while creating FoodType. Request: {@Request}",
                     command.Request

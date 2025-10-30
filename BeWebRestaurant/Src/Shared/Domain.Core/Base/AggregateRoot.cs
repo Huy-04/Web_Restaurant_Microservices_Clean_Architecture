@@ -24,9 +24,11 @@ namespace Domain.Core.Base
             _domainEvents.Remove(domainEvent);
         }
 
-        protected void ClearDomainEvents()
+        public IReadOnlyCollection<IDomainEvent> DequeueDomainEvents()
         {
+            var snapshot = _domainEvents.ToArray();
             _domainEvents.Clear();
+            return snapshot;
         }
     }
 }

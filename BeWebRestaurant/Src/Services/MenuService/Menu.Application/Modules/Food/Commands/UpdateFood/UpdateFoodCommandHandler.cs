@@ -4,7 +4,7 @@ using Domain.Core.Rule.RuleFactory;
 using Domain.Core.RuleException;
 using MediatR;
 using Menu.Application.DTOs.Responses.Food;
-using Menu.Application.Interfaces;
+using Menu.Application.Interface;
 using Menu.Application.Mapping.FoodMapExtension;
 using Menu.Domain.Common.Messages.FieldNames;
 using Menu.Domain.ValueObjects.Food;
@@ -73,13 +73,14 @@ namespace Menu.Application.Modules.Food.Commands.UpdateFood
 
                 food.ApplyFood(command.Request);
                 await _uow.FoodRepo.Update(food);
+                await _uow.SaveChangesAsync(token);
                 await _uow.CommitAsync(token);
-                
+
                 return food.ToFoodResponse(foodType!.FoodTypeName);
             }
             catch (BusinessRuleException bex)
             {
-                await _uow.RollBackAsync(token);
+                await _uow.RollbackAsync(token);
                 _logger.LogWarning(
                     bex,
                     "BusinessRule Exception occurred while updating Food with Id={Id}. Request: {@Request}",
@@ -90,7 +91,7 @@ namespace Menu.Application.Modules.Food.Commands.UpdateFood
             }
             catch (Exception ex)
             {
-                await _uow.RollBackAsync(token);
+                await _uow.RollbackAsync(token);
                 _logger.LogError(
                     ex,
                     "Exception occurred while updating Food with Id={Id}. Request: {@Request}",

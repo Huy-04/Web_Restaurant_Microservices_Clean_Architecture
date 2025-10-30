@@ -3,7 +3,7 @@ using Domain.Core.Messages.FieldNames;
 using Domain.Core.Rule.RuleFactory;
 using Domain.Core.RuleException;
 using Inventory.Application.DTOs.Responses.StockItems;
-using Inventory.Application.Interfaces;
+using Inventory.Application.Interface;
 using Inventory.Application.Mapping.StockItemsMapExtension;
 using Inventory.Domain.Common.Messages.FieldNames;
 using Inventory.Domain.Entities;
@@ -59,7 +59,7 @@ namespace Inventory.Application.Modules.StockItems.Commands.CreateStockItems
 
                 if (await _uow.StockItemsRepo.ExistsByStockIdAndIngredientsIdAsync(stockItems.StockId, stockItems.IngredientsId, token))
                 {
-                    _logger.LogWarning("Create failed: StockItems with StockId={StockId} and IngredientsId={IngredientsId} already exists", 
+                    _logger.LogWarning("Create failed: StockItems with StockId={StockId} and IngredientsId={IngredientsId} already exists",
                         stockItems.StockId, stockItems.IngredientsId);
                     throw RuleFactory.SimpleRuleException(
                         ErrorCategory.Conflict,
@@ -79,13 +79,14 @@ namespace Inventory.Application.Modules.StockItems.Commands.CreateStockItems
                 }
 
                 await _uow.StockItemsRepo.CreateAsync(stockItems, token);
+                await _uow.SaveChangesAsync(token);
                 await _uow.CommitAsync(token);
 
                 return stockItems.ToStockItemsResponse(stock.StockName, ingredients.IngredientsName);
             }
             catch (BusinessRuleException bex)
             {
-                await _uow.RollBackAsync(token);
+                await _uow.RollbackAsync(token);
                 _logger.LogWarning(bex,
                     "BusinessRule Exception occurred while creating StockItems. Request: {@Request}",
                     command.Request
@@ -94,7 +95,7 @@ namespace Inventory.Application.Modules.StockItems.Commands.CreateStockItems
             }
             catch (Exception ex)
             {
-                await _uow.RollBackAsync(token);
+                await _uow.RollbackAsync(token);
                 _logger.LogError(ex,
                     "Exception occurred while creating StockItems. Request: {@Request}",
                     command.Request

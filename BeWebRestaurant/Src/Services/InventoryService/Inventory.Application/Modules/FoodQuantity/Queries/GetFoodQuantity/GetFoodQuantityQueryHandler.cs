@@ -1,5 +1,5 @@
 ﻿using Inventory.Application.DTOs.Responses.FoodQuantity;
-using Inventory.Application.Interfaces;
+using Inventory.Application.Interface;
 using Inventory.Domain.Entities;
 using MediatR;
 
@@ -16,7 +16,7 @@ namespace Inventory.Application.Modules.FoodQuantity.Queries.GetFoodQuantity
 
         public async Task<IEnumerable<FoodQuantityResponse>> Handle(GetFoodQuantityQuery query, CancellationToken token)
         {
-            var foodRecipeList = await _uow.FoodRecipesRepo.GetAllAsync();
+            var foodRecipeList = await _uow.FoodRecipesRepo.GetAllAsync(token);
             var stockItemsList = await _uow.StockItemsRepo.GetAllAsync(token);
 
             var foodRecipeseGroup = foodRecipeList.GroupBy(x => x.FoodId);

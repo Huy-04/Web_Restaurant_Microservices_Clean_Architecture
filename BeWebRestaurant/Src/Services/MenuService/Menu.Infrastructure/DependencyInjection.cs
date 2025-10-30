@@ -1,9 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Menu.Application.Interfaces;
+using Menu.Application.Interface;
 using Menu.Infrastructure.Persistence;
 using Menu.Infrastructure.Repository;
+using Menu.Domain.IRepository;
 
 namespace Menu.Infrastructure
 {

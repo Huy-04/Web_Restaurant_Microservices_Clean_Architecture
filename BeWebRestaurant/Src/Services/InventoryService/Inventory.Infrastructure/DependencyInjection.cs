@@ -1,7 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Inventory.Application.Interfaces;
+using Inventory.Application.Interface;
+using Inventory.Domain.IRepository;
 using Inventory.Infrastructure.Persistence;
 using Inventory.Infrastructure.Repository;
 

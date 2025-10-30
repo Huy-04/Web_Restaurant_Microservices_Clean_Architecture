@@ -1,8 +1,8 @@
 ﻿using Menu.Domain.Entities;
 using Menu.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using Menu.Application.Interfaces;
 using Menu.Domain.ValueObjects.Food;
+using Menu.Domain.IRepository;
 
 namespace Menu.Infrastructure.Repository
 {
@@ -26,7 +26,7 @@ namespace Menu.Infrastructure.Repository
         {
             return await _context.Foods
                 .AsNoTracking()
-                .FirstOrDefaultAsync(f => f.Id == idFood,token);
+                .FirstOrDefaultAsync(f => f.Id == idFood, token);
         }
 
         public async Task<IEnumerable<Food>> GetByFoodTypeAsync(Guid idFoodType, CancellationToken token)

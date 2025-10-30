@@ -1,5 +1,5 @@
 ﻿using Inventory.Application.DTOs.Responses.StockItems;
-using Inventory.Application.Interfaces;
+using Inventory.Application.Interface;
 using Inventory.Application.Mapping.StockItemsMapExtension;
 using Inventory.Domain.Enums;
 using Inventory.Domain.ValueObjects.StockItems;

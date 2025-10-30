@@ -1,6 +1,5 @@
 ﻿using Api.Core.Logging;
 using Api.Core.Middleware;
-using Application.Core.Behaviors;
 using MediatR;
 using Menu.Application.Modules.FoodTypes.Commands.CreateFoodType;
 using Menu.Infrastructure;
@@ -39,9 +38,6 @@ builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssembly(typeof(CreateFoodTypeCommand).Assembly);
 });
-
-// Add behaviors
-builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviors<,>));
 
 // Build app
 var app = builder.Build();

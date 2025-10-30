@@ -3,10 +3,9 @@ using Domain.Core.Messages.FieldNames;
 using Domain.Core.Rule.RuleFactory;
 using Domain.Core.RuleException;
 using Inventory.Application.DTOs.Responses.StockItems;
-using Inventory.Application.Interfaces;
+using Inventory.Application.Interface;
 using Inventory.Application.Mapping.StockItemsMapExtension;
 using Inventory.Domain.Common.Messages.FieldNames;
-using Inventory.Domain.Entities;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
@@ -74,7 +73,7 @@ namespace Inventory.Application.Modules.StockItems.Commands.UpdateStockItems
 
                 if (await _uow.StockItemsRepo.ExistsByStockIdAndIngredientsIdAsync(command.Request.StockId, command.Request.IngredientsId, token, stockItems.Id))
                 {
-                    _logger.LogWarning("Update failed: StockItems with StockId={StockId} and IngredientsId={IngredientsId} already exists", 
+                    _logger.LogWarning("Update failed: StockItems with StockId={StockId} and IngredientsId={IngredientsId} already exists",
                         command.Request.StockId, command.Request.IngredientsId);
                     throw RuleFactory.SimpleRuleException(
                         ErrorCategory.Conflict,
@@ -94,13 +93,14 @@ namespace Inventory.Application.Modules.StockItems.Commands.UpdateStockItems
 
                 stockItems.ApplyStockItems(command.Request);
                 await _uow.StockItemsRepo.Update(stockItems);
+                await _uow.SaveChangesAsync(token);
                 await _uow.CommitAsync(token);
 
                 return stockItems.ToStockItemsResponse(stock.StockName, ingredients.IngredientsName);
             }
             catch (BusinessRuleException bex)
             {
-                await _uow.RollBackAsync(token);
+                await _uow.RollbackAsync(token);
                 _logger.LogWarning(bex,
                     "BusinessRule Exception occurred while updating StockItems with Id={Id}. Request: {@Request}",
                     command.IdStockItems,
@@ -110,7 +110,7 @@ namespace Inventory.Application.Modules.StockItems.Commands.UpdateStockItems
             }
             catch (Exception ex)
             {
-                await _uow.RollBackAsync(token);
+                await _uow.RollbackAsync(token);
                 _logger.LogError(ex,
                     "Exception occurred while updating StockItems with Id={Id}. Request: {@Request}",
                     command.IdStockItems,

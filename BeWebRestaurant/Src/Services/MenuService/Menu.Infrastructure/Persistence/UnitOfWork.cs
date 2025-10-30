@@ -1,6 +1,5 @@
-﻿using Domain.Core.Base;
-using MediatR;
-using Menu.Application.Interfaces;
+﻿using Menu.Application.Interface;
+using Menu.Domain.IRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
@@ -9,37 +8,39 @@ namespace Menu.Infrastructure.Persistence
     public sealed class UnitOfWork : IUnitOfWork, IAsyncDisposable, IDisposable
     {
         private readonly MenuDbContext _context;
-        private readonly IMediator _mediator;
+        private IDbContextTransaction? _transaction;
+
         public IFoodRepository FoodRepo { get; }
         public IFoodTypeRepository FoodTypeRepo { get; }
 
-        private IDbContextTransaction? _transaction;
-
-        public UnitOfWork(MenuDbContext context, IFoodRepository foodRepo, IFoodTypeRepository foodTypeRepo, IMediator mediator)
+        public UnitOfWork(MenuDbContext context, IFoodRepository foodRepo, IFoodTypeRepository foodTypeRepo)
         {
             _context = context;
             FoodRepo = foodRepo;
             FoodTypeRepo = foodTypeRepo;
-            _mediator = mediator;
         }
 
         public async Task BeginTransactionAsync(CancellationToken token)
         {
-            if (_transaction is not null) return;
+            if (_transaction is not null)
+                throw new InvalidOperationException("Transaction already started");
+
             _transaction = await _context.Database
                 .BeginTransactionAsync(System.Data.IsolationLevel.ReadCommitted, token);
         }
 
+        public async Task<int> SaveChangesAsync(CancellationToken token)
+        {
+            return await _context.SaveChangesAsync(token);
+        }
+
         public async Task CommitAsync(CancellationToken token)
         {
-            if (_transaction is null) return;
+            if (_transaction is null)
+                throw new InvalidOperationException("No transaction to commit");
 
             try
             {
-                await _context.SaveChangesAsync(token);
-
-                await DispatchDomainEventsAsync(token);
-
                 await _transaction.CommitAsync(token);
             }
             finally
@@ -49,43 +50,32 @@ namespace Menu.Infrastructure.Persistence
             }
         }
 
-        public async Task RollBackAsync(CancellationToken token)
+        public async Task RollbackAsync(CancellationToken token)
         {
             if (_transaction is null) return;
 
-            await _transaction.RollbackAsync(token);
-            await _transaction.DisposeAsync();
-            _transaction = null;
-        }
-
-        private async Task DispatchDomainEventsAsync(CancellationToken token)
-        {
-            var aggregates = _context.ChangeTracker.Entries<AggregateRoot>()
-                .Where(e => e.Entity.DomainEvents.Any())
-                .Select(e => e.Entity)
-                .ToList();
-
-            var events = aggregates.SelectMany(a => a.DomainEvents).ToList();
-
-            foreach (var aggregate in aggregates)
+            try
             {
-                aggregate.GetType().GetMethod("ClearDomainEvents", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
-                    ?.Invoke(aggregate, null);
+                await _transaction.RollbackAsync(token);
             }
-
-            foreach (var domainEvent in events)
+            finally
             {
-                await _mediator.Publish(domainEvent, token);
+                await _transaction.DisposeAsync();
+                _transaction = null;
             }
         }
 
         public void Dispose()
         {
+            _transaction?.Dispose();
             _context.Dispose();
         }
 
         public async ValueTask DisposeAsync()
         {
+            if (_transaction is not null)
+                await _transaction.DisposeAsync();
+
             await _context.DisposeAsync();
         }
     }

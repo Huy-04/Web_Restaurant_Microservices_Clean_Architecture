@@ -2,7 +2,7 @@
 using Domain.Core.Messages.FieldNames;
 using Domain.Core.Rule.RuleFactory;
 using Inventory.Application.DTOs.Responses.FoodRecipe;
-using Inventory.Application.Interfaces;
+using Inventory.Application.Interface;
 using Inventory.Application.Mapping.FoodRecipeMapExtension;
 using Inventory.Domain.Common.Messages.FieldNames;
 using Inventory.Domain.Entities;

@@ -2,7 +2,7 @@
 using Domain.Core.Messages.FieldNames;
 using Domain.Core.Rule.RuleFactory;
 using Inventory.Application.DTOs.Responses.Ingredients;
-using Inventory.Application.Interfaces;
+using Inventory.Application.Interface;
 using Inventory.Application.Mapping.IngredientsMapExtension;
 using Inventory.Domain.Common.Messages.FieldNames;
 using MediatR;

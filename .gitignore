@@ -1,2 +1,23 @@
 appsettings.Development.json
 **/logs/
+
+# IDE and Editor files
+.vs/
+.vscode/
+.copilot/
+*.user
+*.rsuser
+*.suo
+*.sln.iml
+
+# Build and binary files
+bin/
+obj/
+*.dll
+*.exe
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/

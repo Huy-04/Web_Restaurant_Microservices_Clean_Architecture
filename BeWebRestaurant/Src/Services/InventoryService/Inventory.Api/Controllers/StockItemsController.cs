@@ -32,7 +32,7 @@ namespace Inventory.Api.Controllers
         public async Task<ActionResult<IEnumerable<StockItemsResponse>>> GetAll
             (CancellationToken token)
         {
-            var result = await _mediator.Send(new GetAllIStockItemsQuery(), token);
+            var result = await _mediator.Send(new GetAllStockItemsQuery(), token);
             return Ok(result);
         }
 

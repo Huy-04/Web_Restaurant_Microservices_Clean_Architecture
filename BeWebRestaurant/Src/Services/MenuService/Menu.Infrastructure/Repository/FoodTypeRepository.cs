@@ -1,5 +1,5 @@
-﻿using Menu.Application.Interfaces;
-using Menu.Domain.Entities;
+﻿using Menu.Domain.Entities;
+using Menu.Domain.IRepository;
 using Menu.Domain.ValueObjects.FoodType;
 using Menu.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;

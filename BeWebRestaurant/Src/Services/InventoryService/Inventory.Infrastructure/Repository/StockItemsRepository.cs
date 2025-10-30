@@ -1,8 +1,8 @@
-﻿using Inventory.Application.Interfaces;
+﻿using Inventory.Domain.IRepository;
 using Inventory.Domain.Entities;
-using Inventory.Domain.ValueObjects.StockItems;
 using Inventory.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Inventory.Domain.ValueObjects.StockItems;
 
 namespace Inventory.Infrastructure.Repository
 {

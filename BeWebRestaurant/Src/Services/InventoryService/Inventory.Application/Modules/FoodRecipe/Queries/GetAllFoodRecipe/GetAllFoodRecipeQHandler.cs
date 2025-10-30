@@ -1,5 +1,5 @@
 ﻿using Inventory.Application.DTOs.Responses.FoodRecipe;
-using Inventory.Application.Interfaces;
+using Inventory.Application.Interface;
 using Inventory.Application.Mapping.FoodRecipeMapExtension;
 using MediatR;
 

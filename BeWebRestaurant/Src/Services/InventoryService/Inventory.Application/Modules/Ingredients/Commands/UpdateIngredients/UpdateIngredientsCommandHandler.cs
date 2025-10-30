@@ -3,7 +3,7 @@ using Domain.Core.Messages.FieldNames;
 using Domain.Core.Rule.RuleFactory;
 using Domain.Core.RuleException;
 using Inventory.Application.DTOs.Responses.Ingredients;
-using Inventory.Application.Interfaces;
+using Inventory.Application.Interface;
 using Inventory.Application.Mapping.IngredientsMapExtension;
 using Inventory.Domain.Common.Messages.FieldNames;
 using MediatR;
@@ -59,13 +59,14 @@ namespace Inventory.Application.Modules.Ingredients.Commands.UpdateIngredients
 
                 ingredients.Update(entity.IngredientsName, entity.Description);
                 await repo.Update(ingredients);
+                await _uow.SaveChangesAsync(token);
                 await _uow.CommitAsync(token);
 
                 return ingredients.ToIngredientsResponse();
             }
             catch (BusinessRuleException bex)
             {
-                await _uow.RollBackAsync(token);
+                await _uow.RollbackAsync(token);
                 _logger.LogWarning(
                     bex,
                     "BusinessRule Exception occurred while updating Ingredients with Id={Id}. Request: {@Request}",
@@ -76,7 +77,7 @@ namespace Inventory.Application.Modules.Ingredients.Commands.UpdateIngredients
             }
             catch (Exception ex)
             {
-                await _uow.RollBackAsync(token);
+                await _uow.RollbackAsync(token);
                 _logger.LogError(
                     ex,
                     "Exception occurred while updating Ingredients with Id={Id}. Request: {@Request}",

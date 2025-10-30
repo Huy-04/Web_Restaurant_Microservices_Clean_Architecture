@@ -10,7 +10,6 @@
         "dependencies": {
           "Api.Core": "1.0.0",
           "Inventory.Application": "1.0.0",
-          "Inventory.Domain": "1.0.0",
           "Inventory.Infrastructure": "1.0.0",
           "Microsoft.AspNetCore.OpenApi": "9.0.5",
           "Microsoft.EntityFrameworkCore.Design": "9.0.5",
@@ -1187,9 +1186,8 @@
           "Serilog.Enrichers.Activity": "1.0.0.3"
         },
         "runtime": {
-          "Api.Core.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
+          "API.Core.dll": {
+            "fileVersion": "0.0.0.0"
           }
         }
       },

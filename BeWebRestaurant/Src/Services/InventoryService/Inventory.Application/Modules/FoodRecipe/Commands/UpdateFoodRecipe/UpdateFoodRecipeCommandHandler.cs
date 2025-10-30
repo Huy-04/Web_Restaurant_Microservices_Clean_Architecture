@@ -3,7 +3,7 @@ using Domain.Core.Messages.FieldNames;
 using Domain.Core.Rule.RuleFactory;
 using Domain.Core.RuleException;
 using Inventory.Application.DTOs.Responses.FoodRecipe;
-using Inventory.Application.Interfaces;
+using Inventory.Application.Interface;
 using Inventory.Application.Mapping.FoodRecipeMapExtension;
 using Inventory.Domain.Common.Messages.FieldNames;
 using MediatR;
@@ -30,7 +30,7 @@ namespace Inventory.Application.Modules.FoodRecipe.Commands.UpdateFoodRecipe
             {
                 var repo = _uow.FoodRecipesRepo;
 
-                var foodRecipe = await repo.GetByIdAsync(command.IdFoodRecipe);
+                var foodRecipe = await repo.GetByIdAsync(command.IdFoodRecipe, token);
                 if (foodRecipe is null)
                 {
                     _logger.LogWarning("Update failed: FoodRecipe with Id={Id} not found", command.IdFoodRecipe);
@@ -45,7 +45,7 @@ namespace Inventory.Application.Modules.FoodRecipe.Commands.UpdateFoodRecipe
                 }
 
                 var entity = command.Request.ToFoodRecipe();
-                var ingredients = await _uow.IngredientsRepo.GetByIdAsync(entity.IngredientsId);
+                var ingredients = await _uow.IngredientsRepo.GetByIdAsync(entity.IngredientsId, token);
                 if (ingredients is null)
                 {
                     _logger.LogWarning("Update failed: Ingredients with Id={Id} not found", entity.IngredientsId);
@@ -81,13 +81,14 @@ namespace Inventory.Application.Modules.FoodRecipe.Commands.UpdateFoodRecipe
 
                 foodRecipe.Update(entity.FoodId, entity.IngredientsId, entity.Measurement);
                 await repo.Update(foodRecipe);
+                await _uow.SaveChangesAsync(token);
                 await _uow.CommitAsync(token);
 
                 return foodRecipe.ToFoodRecipeResponse(ingredients.IngredientsName);
             }
             catch (BusinessRuleException bex)
             {
-                await _uow.RollBackAsync(token);
+                await _uow.RollbackAsync(token);
                 _logger.LogWarning(
                     bex,
                     "BusinessRule Exception occurred while updating FoodRecipe with Id={Id}. Request: {@Request}",
@@ -98,7 +99,7 @@ namespace Inventory.Application.Modules.FoodRecipe.Commands.UpdateFoodRecipe
             }
             catch (Exception ex)
             {
-                await _uow.RollBackAsync(token);
+                await _uow.RollbackAsync(token);
                 _logger.LogError(
                     ex,
                     "Exception occurred while updating FoodRecipe with Id={Id}. Request: {@Request}",

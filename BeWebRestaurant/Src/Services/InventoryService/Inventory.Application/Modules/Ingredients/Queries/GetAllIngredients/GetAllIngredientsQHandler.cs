@@ -1,7 +1,7 @@
 ﻿using Inventory.Application.DTOs.Responses.Ingredients;
-using Inventory.Application.Interfaces;
+using Inventory.Application.Interface;
 using Inventory.Application.Mapping.IngredientsMapExtension;
-using Inventory.Application.Modules.Ingredients.Queries.GetAll;
+using Inventory.Application.Modules.Ingredients.Queries.GetAllIngredients;
 using MediatR;
 
 namespace Inventory.Application.Modules.Ingredients.Queries.GetAllIngredients

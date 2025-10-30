@@ -1,18 +1,10 @@
 ﻿using Application.Core.DTOs.Requests.Measurement;
-using Domain.Core.Interface.Request;
-using Domain.Core.Interface.Rule;
-using Domain.Core.Rule.RuleFactory;
-using Inventory.Application.DTOs.Responses.StockItems;
 using MediatR;
+using Inventory.Application.DTOs.Responses.StockItems;
 
 namespace Inventory.Application.Modules.StockItems.Commands.DecreaseStockItems
 {
-    public sealed record DecreaseStockItemsCommand(Guid IdStockItems, MeasurementRequest Request) : IRequest<StockItemsResponse>, IValidateRequest
+    public sealed record DecreaseStockItemsCommand(Guid IdStockItems, MeasurementRequest Request) : IRequest<StockItemsResponse>
     {
-        public IEnumerable<IBusinessRule> GetRule()
-        {
-            yield return MeasurementRuleFactory.QuantityNotNegative(Request.Quantity);
-            yield return MeasurementRuleFactory.UnitValidate(Request.UnitEnum);
-        }
     }
 }

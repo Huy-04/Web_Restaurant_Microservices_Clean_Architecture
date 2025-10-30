@@ -3,7 +3,7 @@ using Domain.Core.Messages.FieldNames;
 using Domain.Core.Rule.RuleFactory;
 using Domain.Core.RuleException;
 using MediatR;
-using Menu.Application.Interfaces;
+using Menu.Application.Interface;
 using Menu.Domain.Common.Messages.FieldNames;
 using Microsoft.Extensions.Logging;
 
@@ -40,13 +40,14 @@ namespace Menu.Application.Modules.Food.Commands.DeleteFood
                 }
 
                 await _uow.FoodRepo.DeleteAsync(command.IdFood, token);
+                await _uow.SaveChangesAsync(token);
                 await _uow.CommitAsync(token);
 
                 return true;
             }
             catch (BusinessRuleException bex)
             {
-                await _uow.RollBackAsync(token);
+                await _uow.RollbackAsync(token);
                 _logger.LogWarning(
                     bex,
                     "BusinessRule Exception occurred while deleting Food with Id={Id}",
@@ -56,7 +57,7 @@ namespace Menu.Application.Modules.Food.Commands.DeleteFood
             }
             catch (Exception ex)
             {
-                await _uow.RollBackAsync(token);
+                await _uow.RollbackAsync(token);
                 _logger.LogError(
                     ex,
                     "Exception occurred while deleting Food with Id={Id}",

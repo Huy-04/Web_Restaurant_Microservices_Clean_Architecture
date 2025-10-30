@@ -621,10 +621,10 @@ C:\Code\Project\Web_Restaurant\BeWebRestaurant\Src\Services\InventoryService\Inv
 C:\Code\Project\Web_Restaurant\BeWebRestaurant\Src\Services\InventoryService\Inventory.Api\obj\Debug\net9.0\staticwebassets.development.json
 C:\Code\Project\Web_Restaurant\BeWebRestaurant\Src\Services\InventoryService\Inventory.Api\obj\Debug\net9.0\staticwebassets.build.endpoints.json
 C:\Code\Project\Web_Restaurant\BeWebRestaurant\Src\Services\InventoryService\Inventory.Api\obj\Debug\net9.0\swae.build.ex.cache
-C:\Code\Project\Web_Restaurant\BeWebRestaurant\Src\Services\InventoryService\Inventory.Api\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Code\Project\Web_Restaurant\BeWebRestaurant\Src\Services\InventoryService\Inventory.Api\obj\Debug\net9.0\Inventor.18CF93C9.Up2Date
 C:\Code\Project\Web_Restaurant\BeWebRestaurant\Src\Services\InventoryService\Inventory.Api\obj\Debug\net9.0\Inventory.Api.dll
 C:\Code\Project\Web_Restaurant\BeWebRestaurant\Src\Services\InventoryService\Inventory.Api\obj\Debug\net9.0\refint\Inventory.Api.dll
 C:\Code\Project\Web_Restaurant\BeWebRestaurant\Src\Services\InventoryService\Inventory.Api\obj\Debug\net9.0\Inventory.Api.pdb
 C:\Code\Project\Web_Restaurant\BeWebRestaurant\Src\Services\InventoryService\Inventory.Api\obj\Debug\net9.0\Inventory.Api.genruntimeconfig.cache
 C:\Code\Project\Web_Restaurant\BeWebRestaurant\Src\Services\InventoryService\Inventory.Api\obj\Debug\net9.0\ref\Inventory.Api.dll
+C:\Code\Project\Web_Restaurant\BeWebRestaurant\Src\Services\InventoryService\Inventory.Api\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

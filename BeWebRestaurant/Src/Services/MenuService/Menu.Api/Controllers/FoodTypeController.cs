@@ -3,9 +3,9 @@ using Menu.Application.DTOs.Requests.FoodType;
 using Menu.Application.DTOs.Responses.FoodType;
 using Menu.Application.Modules.FoodType.Queries.GetAllFoodType;
 using Menu.Application.Modules.FoodType.Queries.GetFoodTypeById;
-using Menu.Application.Modules.FoodTypes.Commands.CreateFoodType;
-using Menu.Application.Modules.FoodTypes.Commands.DeleteFoodType;
-using Menu.Application.Modules.FoodTypes.Commands.UpdateFoodType;
+using Menu.Application.Modules.FoodType.Commands.CreateFoodType;
+using Menu.Application.Modules.FoodType.Commands.DeleteFoodType;
+using Menu.Application.Modules.FoodType.Commands.UpdateFoodType;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Menu.Api.Controllers

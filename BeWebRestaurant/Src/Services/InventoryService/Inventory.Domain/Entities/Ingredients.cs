@@ -1,6 +1,6 @@
 ﻿using Domain.Core.Base;
 using Domain.Core.ValueObjects;
-using Inventory.Domain.Events.InventoryEvents;
+using Inventory.Domain.Events.IngredientsEvents;
 using Inventory.Domain.ValueObjects.Ingredients;
 
 namespace Inventory.Domain.Entities

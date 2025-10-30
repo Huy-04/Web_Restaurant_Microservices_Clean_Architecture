@@ -4,7 +4,7 @@ using Domain.Core.Rule.RuleFactory;
 using Domain.Core.RuleException;
 using MediatR;
 using Menu.Application.DTOs.Responses.Food;
-using Menu.Application.Interfaces;
+using Menu.Application.Interface;
 using Menu.Application.Mapping.FoodMapExtension;
 using Menu.Domain.Common.Messages.FieldNames;
 using Microsoft.Extensions.Logging;
@@ -56,13 +56,14 @@ namespace Menu.Application.Modules.Food.Commands.CreateFood
                 }
 
                 await _uow.FoodRepo.CreateAsync(food, token);
+                await _uow.SaveChangesAsync(token);
                 await _uow.CommitAsync(token);
-                
+
                 return food.ToFoodResponse(foodType.FoodTypeName);
             }
             catch (BusinessRuleException bex)
             {
-                await _uow.RollBackAsync(token);
+                await _uow.RollbackAsync(token);
                 _logger.LogWarning(bex,
                     "BusinessRule Exception occurred while creating Food. Request: {@Request}",
                     command.Request
@@ -71,7 +72,7 @@ namespace Menu.Application.Modules.Food.Commands.CreateFood
             }
             catch (Exception ex)
             {
-                await _uow.RollBackAsync(token);
+                await _uow.RollbackAsync(token);
                 _logger.LogError(ex,
                     "Exception occurred while creating Food. Request: {@Request}",
                     command.Request

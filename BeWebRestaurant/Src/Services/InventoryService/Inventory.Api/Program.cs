@@ -1,9 +1,7 @@
 using Api.Core.Logging;
 using Api.Core.Middleware;
-using Application.Core.Behaviors;
 using Inventory.Application.Modules.Stock.Commands.CreateStock;
 using Inventory.Infrastructure;
-using MediatR;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -39,9 +37,6 @@ builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssembly(typeof(CreateStockCommand).Assembly);
 });
-
-// Add behaviors
-builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviors<,>));
 
 // Build app
 var app = builder.Build();

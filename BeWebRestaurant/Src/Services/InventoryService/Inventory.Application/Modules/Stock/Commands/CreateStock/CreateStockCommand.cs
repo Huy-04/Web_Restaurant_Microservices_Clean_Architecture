@@ -1,21 +1,10 @@
-﻿using Domain.Core.Interface.Request;
-using Domain.Core.Interface.Rule;
-using Domain.Core.Rule.RuleFactory;
+﻿using MediatR;
 using Inventory.Application.DTOs.Requests.Stock;
 using Inventory.Application.DTOs.Responses.Stock;
-using Inventory.Domain.Common.Factories.Rule;
-using MediatR;
 
 namespace Inventory.Application.Modules.Stock.Commands.CreateStock
 {
-    public sealed record CreateStockCommand(StockRequest Request) : IRequest<StockResponse>, IValidateRequest
+    public sealed record CreateStockCommand(StockRequest Request) : IRequest<StockResponse>
     {
-        public IEnumerable<IBusinessRule> GetRule()
-        {
-            yield return StockRuleFactory.NameMaxLength(Request.StockName);
-            yield return StockRuleFactory.NameNotEmpty(Request.StockName);
-            yield return DescriptionRuleFactory.DescriptionNotEmpty(Request.Description);
-            yield return DescriptionRuleFactory.DescriptionMaxLength(Request.Description);
-        }
     }
 }

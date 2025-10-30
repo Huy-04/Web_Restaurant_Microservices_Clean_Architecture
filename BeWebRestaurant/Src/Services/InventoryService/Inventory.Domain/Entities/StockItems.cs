@@ -5,7 +5,7 @@ using Domain.Core.Rule;
 using Domain.Core.ValueObjects;
 using Inventory.Domain.Common.Factories.Rule;
 using Inventory.Domain.Enums;
-using Inventory.Domain.Events.InventoryEvents;
+using Inventory.Domain.Events.StockItemsEvents;
 using Inventory.Domain.ValueObjects.StockItems;
 
 namespace Inventory.Domain.Entities

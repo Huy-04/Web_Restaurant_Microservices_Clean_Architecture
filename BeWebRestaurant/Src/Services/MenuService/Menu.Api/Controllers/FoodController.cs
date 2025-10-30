@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Menu.Api.Controllers
 {
     [ApiController]
-    [Route("api/[Controller]")]
+    [Route("api/[controller]")]
     public sealed class FoodController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -28,7 +28,7 @@ namespace Menu.Api.Controllers
         public async Task<ActionResult<IEnumerable<FoodResponse>>> GetAll
             (CancellationToken token)
         {
-            var result = await _mediator.Send(new GetAllQueryFood(), token);
+            var result = await _mediator.Send(new GetAllFoodQuery(), token);
             return Ok(result);
         }
 

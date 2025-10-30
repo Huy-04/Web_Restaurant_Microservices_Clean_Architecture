@@ -2,7 +2,7 @@
 using Domain.Core.Messages.FieldNames;
 using Domain.Core.Rule.RuleFactory;
 using Domain.Core.RuleException;
-using Inventory.Application.Interfaces;
+using Inventory.Application.Interface;
 using Inventory.Domain.Common.Messages.FieldNames;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -53,13 +53,14 @@ namespace Inventory.Application.Modules.Stock.Commands.DeleteStock
                 }
 
                 await _uow.StockRepo.DeleteAsync(command.IdStock, token);
+                await _uow.SaveChangesAsync(token);
                 await _uow.CommitAsync(token);
 
                 return true;
             }
             catch (BusinessRuleException bex)
             {
-                await _uow.RollBackAsync(token);
+                await _uow.RollbackAsync(token);
                 _logger.LogWarning(
                     bex,
                     "BusinessRule Exception occurred while deleting Stock with Id={Id}",
@@ -69,7 +70,7 @@ namespace Inventory.Application.Modules.Stock.Commands.DeleteStock
             }
             catch (Exception ex)
             {
-                await _uow.RollBackAsync(token);
+                await _uow.RollbackAsync(token);
                 _logger.LogError(
                     ex,
                     "Exception occurred while deleting Stock with Id={Id}",

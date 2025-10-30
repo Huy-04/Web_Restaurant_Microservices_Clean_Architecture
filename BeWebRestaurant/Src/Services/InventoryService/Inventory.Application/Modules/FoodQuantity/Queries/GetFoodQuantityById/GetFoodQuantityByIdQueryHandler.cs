@@ -1,5 +1,5 @@
 ﻿using Inventory.Application.DTOs.Responses.FoodQuantity;
-using Inventory.Application.Interfaces;
+using Inventory.Application.Interface;
 using MediatR;
 
 namespace Inventory.Application.Modules.FoodQuantity.Queries.GetFoodQuantityById

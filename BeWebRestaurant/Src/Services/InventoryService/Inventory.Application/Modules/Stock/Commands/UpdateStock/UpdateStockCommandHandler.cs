@@ -3,7 +3,7 @@ using Domain.Core.Messages.FieldNames;
 using Domain.Core.Rule.RuleFactory;
 using Domain.Core.RuleException;
 using Inventory.Application.DTOs.Responses.Stock;
-using Inventory.Application.Interfaces;
+using Inventory.Application.Interface;
 using Inventory.Application.Mapping.StockMapExtension;
 using Inventory.Domain.Common.Messages.FieldNames;
 using MediatR;
@@ -59,13 +59,14 @@ namespace Inventory.Application.Modules.Stock.Commands.UpdateStock
 
                 stock.Update(entity.StockName, entity.Description);
                 await repo.Update(stock);
+                await _uow.SaveChangesAsync(token);
                 await _uow.CommitAsync(token);
 
                 return stock.ToStockResponse();
             }
             catch (BusinessRuleException bex)
             {
-                await _uow.RollBackAsync(token);
+                await _uow.RollbackAsync(token);
                 _logger.LogWarning(
                     bex,
                     "BusinessRule Exception occurred while updating Stock with Id={Id}. Request: {@Request}",
@@ -76,7 +77,7 @@ namespace Inventory.Application.Modules.Stock.Commands.UpdateStock
             }
             catch (Exception ex)
             {
-                await _uow.RollBackAsync(token);
+                await _uow.RollbackAsync(token);
                 _logger.LogError(
                     ex,
                     "Exception occurred while updating Stock with Id={Id}. Request: {@Request}",
