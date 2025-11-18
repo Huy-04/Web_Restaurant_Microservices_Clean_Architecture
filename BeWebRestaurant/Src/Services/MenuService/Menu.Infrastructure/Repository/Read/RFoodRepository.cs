@@ -29,28 +29,15 @@ namespace Menu.Infrastructure.Repository.Read
             && f.FoodName == foodName, token);
         }
 
-        public async Task<Food?> GetByIdWithRecipesAsync(Guid foodId, CancellationToken token = default)
+        // FoodRecipe
+        public async Task<IEnumerable<FoodRecipe>> GetReipeByFoodAsync(Guid foodId, CancellationToken token = default)
         {
-            return await _context.Set<Food>()
-                .Include(f => f.FoodRecipes)
-                .AsNoTracking()
-                .FirstOrDefaultAsync(f => f.Id == foodId, token);
+            return await FindChildEntityAsync<FoodRecipe>(f => f.FoodRecipes, f => f.FoodId == foodId, token);
         }
 
-        public async Task<IEnumerable<Food>> GetFoodsByIngredientAsync(Guid ingredientsId, CancellationToken token = default)
+        public async Task<IEnumerable<FoodRecipe>> GetFoodsByIngredientAsync(Guid ingredientsId, CancellationToken token = default)
         {
-            return await _context.Set<Food>()
-                .Include(f => f.FoodRecipes)
-                .Where(f => f.FoodRecipes.Any(r => r.IngredientsId == ingredientsId))
-                .AsNoTracking()
-                .ToListAsync(token);
-        }
-
-        public async Task<bool> HasRecipeWithIngredientAsync(Guid foodId, Guid ingredientsId, CancellationToken token = default)
-        {
-            return await _context.Set<Food>()
-                .Where(f => f.Id == foodId)
-                .AnyAsync(f => f.FoodRecipes.Any(r => r.IngredientsId == ingredientsId), token);
+            return await FindChildEntityAsync<FoodRecipe>(f => f.FoodRecipes, f => f.IngredientsId == ingredientsId, token);
         }
     }
 }

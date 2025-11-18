@@ -9,15 +9,15 @@ namespace Menu.Domain.Entities
     public sealed class Food : AggregateRoot
     {
         // vo
-        public FoodName FoodName { get; private set; } = default!;
+        public FoodName FoodName { get; private set; }
 
-        public Money Money { get; private set; } = default!;
+        public Money Money { get; private set; }
 
-        public Img Img { get; private set; } = default!;
+        public Img Img { get; private set; }
 
-        public Description Description { get; private set; } = default!;
+        public Description Description { get; private set; }
 
-        public FoodStatus FoodStatus { get; private set; } = default!;
+        public FoodStatus FoodStatus { get; private set; }
 
         // time
         public DateTimeOffset CreatedAt { get; private set; }
@@ -159,30 +159,20 @@ namespace Menu.Domain.Entities
         {
             var recipe = _foodRecipes.FirstOrDefault(r => r.Id == recipeId);
             if (recipe == null) return;
-
-            var oldMeasurement = recipe.Measurement;
             recipe.UpdateMeasurement(measurement);
 
-            if (oldMeasurement != measurement)
-            {
-                Touch();
-                AddDomainEvent(new FoodRecipeUpdatedEvent(recipeId, Id, recipe.IngredientsId, measurement.Quantity, UpdatedAt));
-            }
+            Touch();
+            AddDomainEvent(new FoodRecipeUpdatedEvent(recipeId, Id, recipe.IngredientsId, measurement.Quantity, UpdatedAt));
         }
 
         public void UpdateRecipeIngredient(Guid recipeId, Guid ingredientsId)
         {
             var recipe = _foodRecipes.FirstOrDefault(r => r.Id == recipeId);
             if (recipe == null) return;
-
-            var oldIngredientsId = recipe.IngredientsId;
             recipe.UpdateIngredientsId(ingredientsId);
 
-            if (oldIngredientsId != ingredientsId)
-            {
-                Touch();
-                AddDomainEvent(new FoodRecipeUpdatedEvent(recipeId, Id, ingredientsId, recipe.Measurement.Quantity, UpdatedAt));
-            }
+            Touch();
+            AddDomainEvent(new FoodRecipeUpdatedEvent(recipeId, Id, ingredientsId, recipe.Measurement.Quantity, UpdatedAt));
         }
 
         // extenstion
