@@ -13,6 +13,8 @@ namespace Domain.Core.Interface.IRepository
 
         public Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken token = default);
 
+        public Task<IEnumerable<TChild>> FindChildEntityAsync<TChild>(Expression<Func<TEntity, IEnumerable<TChild>>> navigationExpr, Expression<Func<TChild, bool>> childPredicate, CancellationToken token = default);
+
         public Task<bool> AnyAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken token = default);
     }
 }

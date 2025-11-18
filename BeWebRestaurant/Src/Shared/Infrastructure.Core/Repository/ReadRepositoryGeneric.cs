@@ -46,6 +46,15 @@ namespace Infrastructure.Core.Repository
                 .ToListAsync(token);
         }
 
+        public async Task<IEnumerable<TChild>> FindChildEntityAsync<TChild>(Expression<Func<TEntity, IEnumerable<TChild>>> navigationExpr, Expression<Func<TChild, bool>> childPredicate, CancellationToken token = default)
+        {
+            return await _entities
+                .AsNoTracking()
+                .SelectMany(navigationExpr)
+                .Where(childPredicate)
+                .ToListAsync(token);
+        }
+
         public async Task<bool> AnyAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken token = default)
         {
             return await _entities.AsNoTracking().AnyAsync(predicate, token);
