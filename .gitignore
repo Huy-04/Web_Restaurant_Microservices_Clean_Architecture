@@ -1,0 +1,12 @@
+# Visual Studio
+.vs/
+
+# Build output
+bin/
+obj/
+
+# Logs
+**/logs/
+
+# Development settings
+appsettings.Development.json
